@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1E3A2982-E21E-447A-B18D-27012CA70019}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sigma.App</RootNamespace>
+    <AssemblyName>Sigma.App</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.10.3.5\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.10.50.1600.1\lib\Net20\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.5.1\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppService\AduboAppService.cs" />
+    <Compile Include="AppService\AmostraAppService.cs" />
+    <Compile Include="AppService\AmostraFoliarAppService.cs" />
+    <Compile Include="AppService\AnaliseSoloAppService.cs" />
+    <Compile Include="AppService\AreaAppService.cs" />
+    <Compile Include="AppService\AreaServicoAppService.cs" />
+    <Compile Include="AppService\ArquivoAreaAppService.cs" />
+    <Compile Include="AppService\CicloProducaoAppService.cs" />
+    <Compile Include="AppService\CorretivoAppService.cs" />
+    <Compile Include="AppService\CulturaAppService.cs" />
+    <Compile Include="AppService\EmpresaAppService.cs" />
+    <Compile Include="AppService\EstagioCulturaAppService.cs" />
+    <Compile Include="AppService\ExtracaoCulturaAppService.cs" />
+    <Compile Include="AppService\FaixaTeorAppService.cs" />
+    <Compile Include="AppService\FertilizanteAppService.cs" />
+    <Compile Include="AppService\FormulacaoAduboAppService.cs" />
+    <Compile Include="AppService\FornecedorAppService.cs" />
+    <Compile Include="AppService\GeoConfigurationAppService.cs" />
+    <Compile Include="AppService\GridAppService.cs" />
+    <Compile Include="AppService\ImagemAppService.cs" />
+    <Compile Include="AppService\ImagemRecorteAppService.cs" />
+    <Compile Include="AppService\ImagemSateliteAppService.cs" />
+    <Compile Include="AppService\ItensAnalisesLaboratorioAppService.cs" />
+    <Compile Include="AppService\LaboratorioAppService.cs" />
+    <Compile Include="AppService\NivelSoloAppService.cs" />
+    <Compile Include="AppService\ParametroAreaAppService.cs" />
+    <Compile Include="AppService\ParametroPropriedadeAppService.cs" />
+    <Compile Include="AppService\ParametroRecomendacaoAppService.cs" />
+    <Compile Include="AppService\PartePlantaAppService.cs" />
+    <Compile Include="AppService\ProblemaAppService.cs" />
+    <Compile Include="AppService\ProdutividadeVariedadeAppService.cs" />
+    <Compile Include="AppService\ProdutoAppService.cs" />
+    <Compile Include="AppService\ProdutoSimuladorAppService.cs" />
+    <Compile Include="AppService\PropriedadeAppService.cs" />
+    <Compile Include="AppService\ProprietarioAppService.cs" />
+    <Compile Include="AppService\ProprietarioFornecedorAppService.cs" />
+    <Compile Include="AppService\RecomendacaoFoliarAppService.cs" />
+    <Compile Include="AppService\RegiaoAppService.cs" />
+    <Compile Include="AppService\RestevaAppService.cs" />
+    <Compile Include="AppService\RolesAppService.cs" />
+    <Compile Include="AppService\SafraAppService.cs" />
+    <Compile Include="AppService\SaveTemporaryImgByteAppService.cs" />
+    <Compile Include="AppService\SequenciaImportacaoAppService.cs" />
+    <Compile Include="AppService\ServicoAppService.cs" />
+    <Compile Include="AppService\ShapeAppService.cs" />
+    <Compile Include="AppService\SimulacaoAppService.cs" />
+    <Compile Include="AppService\TeorFoliarAppService.cs" />
+    <Compile Include="AppService\TeorSoloAppService.cs" />
+    <Compile Include="AppService\TipoAmostraAppService.cs" />
+    <Compile Include="AppService\TipoSoloAppService.cs" />
+    <Compile Include="AppService\UnidadeDeLaboratorioAppService.cs" />
+    <Compile Include="AppService\UnidadeMedidaAppService.cs" />
+    <Compile Include="AppService\UsoProdutoAppService.cs" />
+    <Compile Include="AppService\UsuarioAppService.cs" />
+    <Compile Include="AppService\UsuarioAtivoAppService.cs" />
+    <Compile Include="AppService\VariedadeCulturaAppService.cs" />
+    <Compile Include="AppService\_Base\AppService.cs" />
+    <Compile Include="Auxiliar\EncodeClass.cs" />
+    <Compile Include="Interfaces\IAduboAppService.cs" />
+    <Compile Include="Interfaces\IAmostraAppService.cs" />
+    <Compile Include="Interfaces\IAmostraFoliarAppService.cs" />
+    <Compile Include="Interfaces\IAnaliseSoloAppService.cs" />
+    <Compile Include="Interfaces\IAreaAppService.cs" />
+    <Compile Include="Interfaces\IAreaServicoAppService.cs" />
+    <Compile Include="Interfaces\IArquivoAreaAppService.cs" />
+    <Compile Include="Interfaces\ICicloProducaoAppService.cs" />
+    <Compile Include="Interfaces\ICorretivoAppService.cs" />
+    <Compile Include="Interfaces\ICulturaAppService.cs" />
+    <Compile Include="Interfaces\IEmpresaAppService.cs" />
+    <Compile Include="Interfaces\IEstagioCulturaAppService.cs" />
+    <Compile Include="Interfaces\IExtracaoCulturaAppService.cs" />
+    <Compile Include="Interfaces\IFaixaTeorAppService.cs" />
+    <Compile Include="Interfaces\IFertilizanteAppService.cs" />
+    <Compile Include="Interfaces\IFormulacaoAduboAppService.cs" />
+    <Compile Include="Interfaces\IFornecedorAppService.cs" />
+    <Compile Include="Interfaces\IGeoConfigurationAppService.cs" />
+    <Compile Include="Interfaces\IGridAppService.cs" />
+    <Compile Include="Interfaces\IImagemAppService.cs" />
+    <Compile Include="Interfaces\IImagemRecorteAppService.cs" />
+    <Compile Include="Interfaces\IImagemSateliteAppService.cs" />
+    <Compile Include="Interfaces\IItensAnaliseLaboratorioAppService.cs" />
+    <Compile Include="Interfaces\ILaboratorioAppService.cs" />
+    <Compile Include="Interfaces\INivelSoloAppService.cs" />
+    <Compile Include="Interfaces\IParametroAreaAppService.cs" />
+    <Compile Include="Interfaces\IParametroPropriedadeAppService.cs" />
+    <Compile Include="Interfaces\IParametroRecomendacaoAppService.cs" />
+    <Compile Include="Interfaces\IPartePlantaAppService.cs" />
+    <Compile Include="Interfaces\IProblemaAppService.cs" />
+    <Compile Include="Interfaces\IProdutividadeVariedadeAppService.cs" />
+    <Compile Include="Interfaces\IProdutoAppService.cs" />
+    <Compile Include="Interfaces\IProdutoSimuladorAppService.cs" />
+    <Compile Include="Interfaces\IPropriedadeAppService.cs" />
+    <Compile Include="Interfaces\IProprietarioAppService.cs" />
+    <Compile Include="Interfaces\IProprietarioFornecedorAppService.cs" />
+    <Compile Include="Interfaces\IRecomendacaoFoliarAppService.cs" />
+    <Compile Include="Interfaces\IRegiaoAppService.cs" />
+    <Compile Include="Interfaces\IRestevaAppService.cs" />
+    <Compile Include="Interfaces\IRolesAppService.cs" />
+    <Compile Include="Interfaces\ISafraAppService.cs" />
+    <Compile Include="Interfaces\ISaveTemporaryImgByteAppService.cs" />
+    <Compile Include="Interfaces\ISequenciaImportacaoAppService.cs" />
+    <Compile Include="Interfaces\IServicoAppService.cs" />
+    <Compile Include="Interfaces\IShapeAppService.cs" />
+    <Compile Include="Interfaces\ISimulacaoAppService.cs" />
+    <Compile Include="Interfaces\ITeorFoliarAppService.cs" />
+    <Compile Include="Interfaces\ITeorSoloAppService.cs" />
+    <Compile Include="Interfaces\ITipoAmostraAppService.cs" />
+    <Compile Include="Interfaces\ITipoSoloAppService.cs" />
+    <Compile Include="Interfaces\IUnidadeDeLaboratorioAppService.cs" />
+    <Compile Include="Interfaces\IUnidadeMedidaAppService.cs" />
+    <Compile Include="Interfaces\IUsoProdutoAppService.cs" />
+    <Compile Include="Interfaces\IUsuarioAppService.cs" />
+    <Compile Include="Interfaces\IUsuarioAtivoAppService.cs" />
+    <Compile Include="Interfaces\IVariedadeCulturaAppService.cs" />
+    <Compile Include="Interfaces\_Base\IAppService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sigma.Domain\Sigma.Domain.csproj">
+      <Project>{3c1ced4f-8878-4056-9d1e-1617c922f84b}</Project>
+      <Name>Sigma.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Report\DocReporViewer.txt" />
+    <Content Include="Scripts\json-serialize.js" />
+    <Content Include="Scripts\json-serialize.min.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

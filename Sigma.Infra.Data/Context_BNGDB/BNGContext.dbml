@@ -1,0 +1,1993 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BNG" Class="BNGContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.1;Initial Catalog=BNG;User ID=sa" SettingsObjectName="Sigma.Infra.Data.Properties.Settings" SettingsPropertyName="BNGConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Acesso" Member="Acesso">
+    <Type Name="Acesso">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="login" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="senha" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IDProprietario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="Proprietario_Acesso" Member="Proprietario" ThisKey="IDProprietario" OtherKey="objID" Type="Proprietario" IsForeignKey="true" />
+      <Association Name="Usuario_Acesso" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Adubo" Member="Adubo">
+    <Type Name="Adubo">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="n" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="p2o5" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="k2o" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="s" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ca" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mg" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="b" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="co" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Adubo_FormulacaoAdubo" Member="FormulacaoAdubo" ThisKey="objID" OtherKey="IDAdubo" Type="FormulacaoAdubo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Amostra" Member="Amostra">
+    <Type Name="Amostra">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="n" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="p2o5" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="k2o" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ca" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="b" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="zn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="cu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="co" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="media" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDVariedadeCultura" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="Cultura_Amostra" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Cultura_Amostra1" Member="Cultura1" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AmostraLaboratorio" Member="AmostraLaboratorio">
+    <Type Name="AmostraLaboratorio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDTipoAmostra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDEnvioAmostra" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDLaboratorio" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="dataEnvio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dataImportacao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="quantidade" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="oficioGerado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="contrato" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Area_AmostraLaboratorio" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="EnvioAmostra_AmostraLaboratorio" Member="EnvioAmostra" ThisKey="IDEnvioAmostra" OtherKey="objID" Type="EnvioAmostra" IsForeignKey="true" />
+      <Association Name="Laboratorio_AmostraLaboratorio" Member="Laboratorio" ThisKey="IDLaboratorio" OtherKey="objID" Type="Laboratorio" IsForeignKey="true" />
+      <Association Name="Safra_AmostraLaboratorio" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+      <Association Name="TipoAmostra_AmostraLaboratorio" Member="TipoAmostra" ThisKey="IDTipoAmostra" OtherKey="objID" Type="TipoAmostra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AmostraMGF" Member="AmostraMGF">
+    <Type Name="AmostraMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDZonaManejoMGF" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDAreaSafraMGF" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDLaboratorio" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="ponto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="compactacao" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="compactacaoA" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="compactacaoB" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="AmostraMGF_AmostraPatogenoMGF" Member="AmostraPatogenoMGF" ThisKey="objID" OtherKey="IDAmostraMGF" Type="AmostraPatogenoMGF" />
+      <Association Name="AreaSafraMGF_AmostraMGF" Member="AreaSafraMGF" ThisKey="IDAreaSafraMGF" OtherKey="objID" Type="AreaSafraMGF" IsForeignKey="true" />
+      <Association Name="Laboratorio_AmostraMGF" Member="Laboratorio" ThisKey="IDLaboratorio" OtherKey="objID" Type="Laboratorio" IsForeignKey="true" />
+      <Association Name="ZonaManejoMGF_AmostraMGF" Member="ZonaManejoMGF" ThisKey="IDZonaManejoMGF" OtherKey="objID" Type="ZonaManejoMGF" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AmostraPatogenoMGF" Member="AmostraPatogenoMGF">
+    <Type Name="AmostraPatogenoMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAmostraMGF" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDPatogeno" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="popSolo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="popRaiz" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="popColonia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nivelRaiz" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="nivelSolo" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="nivelColonia" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Association Name="AmostraMGF_AmostraPatogenoMGF" Member="AmostraMGF" ThisKey="IDAmostraMGF" OtherKey="objID" Type="AmostraMGF" IsForeignKey="true" />
+      <Association Name="Patogeno_AmostraPatogenoMGF" Member="Patogeno" ThisKey="IDPatogeno" OtherKey="objID" Type="Patogeno" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AnaliseFoliar" Member="AnaliseFoliar">
+    <Type Name="AnaliseFoliar">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDEstagioCultura" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDPartePlanta" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ciclo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AnaliseFoliar_BnFoliarSolo" Member="BnFoliarSolo" ThisKey="objID" OtherKey="IDAnaliseFoliar" Type="BnFoliarSolo" />
+      <Association Name="AnaliseFoliar_TeorFoliar" Member="TeorFoliar" ThisKey="objID" OtherKey="IDAnaliseFoliar" Type="TeorFoliar" />
+      <Association Name="Area_AnaliseFoliar" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="EstagioCultura_AnaliseFoliar" Member="EstagioCultura" ThisKey="IDEstagioCultura" OtherKey="objID" Type="EstagioCultura" IsForeignKey="true" />
+      <Association Name="PartePlanta_AnaliseFoliar" Member="PartePlanta" ThisKey="IDPartePlanta" OtherKey="objID" Type="PartePlanta" IsForeignKey="true" />
+      <Association Name="Safra_AnaliseFoliar" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AnalisePlantio" Member="AnalisePlantio">
+    <Type Name="AnalisePlantio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDZonaPlantio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ponto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="tipoSolo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="profundidade" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="argila" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="cacl2" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ctc" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="p" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="k" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ca" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="AnalisePlantio_CorretivoPlantio" Member="CorretivoPlantio" ThisKey="objID" OtherKey="IDAnalisePlantio" Type="CorretivoPlantio" />
+      <Association Name="AnalisePlantio_VariedadeAnalise" Member="VariedadeAnalise" ThisKey="objID" OtherKey="IDAnalisePlantio" Type="VariedadeAnalise" />
+      <Association Name="ZmPlantio_AnalisePlantio" Member="ZmPlantio" ThisKey="IDZonaPlantio" OtherKey="objID" Type="ZmPlantio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AnaliseSolo" Member="AnaliseSolo">
+    <Type Name="AnaliseSolo">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ponto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="altitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="agua" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="cacl2" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="momicro" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="co" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="pmehl" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="pres" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="k" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ca" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="al" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="hal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ctc" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="argila" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="b" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="zn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fe" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="cu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="somaBases" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="v" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="relcamg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="relcak" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="relmgk" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="relcamgk" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ctcca" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ctcmg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ctck" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ctcal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="compactacao" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="profundidade" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDGrid" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDTipoSolo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="Grid_AnaliseSolo" Member="Grid" ThisKey="IDGrid" OtherKey="objID" Type="Grid" IsForeignKey="true" />
+      <Association Name="Safra_AnaliseSolo" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+      <Association Name="TipoSolo_AnaliseSolo" Member="TipoSolo" ThisKey="IDTipoSolo" OtherKey="objID" Type="TipoSolo" IsForeignKey="true" />
+      <Association Name="Usuario_AnaliseSolo" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Apresentacao" Member="Apresentacao">
+    <Type Name="Apresentacao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPropriedade" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="idArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="img" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ano" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="pontoColeta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Area_Apresentacao" Member="Area" ThisKey="idArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Area" Member="Area">
+    <Type Name="Area">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tamanho" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="referenciaGeografica" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDTipoArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDPropriedadeRural" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="imgMap" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="imgMGF" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="tipoPredSolo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="anoAbertura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="altitudeMedia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Area_AmostraLaboratorio" Member="AmostraLaboratorio" ThisKey="objID" OtherKey="IDArea" Type="AmostraLaboratorio" />
+      <Association Name="Area_AnaliseFoliar" Member="AnaliseFoliar" ThisKey="objID" OtherKey="IDArea" Type="AnaliseFoliar" />
+      <Association Name="Area_Apresentacao" Member="Apresentacao" ThisKey="objID" OtherKey="idArea" Type="Apresentacao" />
+      <Association Name="Area_AreaSafra" Member="AreaSafra" ThisKey="objID" OtherKey="IDArea" Type="AreaSafra" />
+      <Association Name="Area_AreaSafraMGF" Member="AreaSafraMGF" ThisKey="objID" OtherKey="IDArea" Type="AreaSafraMGF" />
+      <Association Name="Area_Arquivo" Member="Arquivo" ThisKey="objID" OtherKey="IDArea" Type="Arquivo" />
+      <Association Name="Area_CicloProducao" Member="CicloProducao" ThisKey="objID" OtherKey="IDArea" Type="CicloProducao" />
+      <Association Name="Area_ControleAlteracao" Member="ControleAlteracao" ThisKey="objID" OtherKey="IDArea" Type="ControleAlteracao" />
+      <Association Name="Area_ControleAlteracaoParametro" Member="ControleAlteracaoParametro" ThisKey="objID" OtherKey="IDArea" Type="ControleAlteracaoParametro" />
+      <Association Name="Area_Corretivo" Member="Corretivo" ThisKey="objID" OtherKey="IDArea" Type="Corretivo" />
+      <Association Name="Area_Gesso" Member="Gesso" ThisKey="objID" OtherKey="IDArea" Type="Gesso" />
+      <Association Name="Area_Grid" Member="Grid" ThisKey="objID" OtherKey="IDArea" Type="Grid" />
+      <Association Name="Area_Imagem" Member="Imagem" ThisKey="objID" OtherKey="IDArea" Type="Imagem" />
+      <Association Name="Area_ImagemMGF" Member="ImagemMGF" ThisKey="objID" OtherKey="IDArea" Type="ImagemMGF" />
+      <Association Name="Area_InsumoPlanejamento" Member="InsumoPlanejamento" ThisKey="objID" OtherKey="IDArea" Type="InsumoPlanejamento" />
+      <Association Name="Area_ObjetivoArea" Member="ObjetivoArea" ThisKey="objID" OtherKey="IDArea" Type="ObjetivoArea" />
+      <Association Name="Area_ParametroArea" Member="ParametroArea" ThisKey="objID" OtherKey="IDArea" Type="ParametroArea" />
+      <Association Name="Area_ParametroRecomendacao" Member="ParametroRecomendacao" ThisKey="objID" OtherKey="IDArea" Type="ParametroRecomendacao" />
+      <Association Name="Area_PlanAreaVariedade" Member="PlanAreaVariedade" ThisKey="objID" OtherKey="IDArea" Type="PlanAreaVariedade" />
+      <Association Name="Area_Plantio" Member="Plantio" ThisKey="objID" OtherKey="IDArea" Type="Plantio" />
+      <Association Name="Area_Problema" Member="Problema" ThisKey="objID" OtherKey="IDArea" Type="Problema" />
+      <Association Name="Area_ProjetoArea" Member="ProjetoArea" ThisKey="objID" OtherKey="IDArea" Type="ProjetoArea" />
+      <Association Name="Area_RestevaColetada" Member="RestevaColetada" ThisKey="objID" OtherKey="IDArea" Type="RestevaColetada" />
+      <Association Name="Area_Shape" Member="Shape" ThisKey="objID" OtherKey="IDArea" Type="Shape" />
+      <Association Name="Area_ShapeMGF" Member="ShapeMGF" ThisKey="objID" OtherKey="IDArea" Type="ShapeMGF" />
+      <Association Name="TipoArea_Area" Member="TipoArea" ThisKey="IDTipoArea" OtherKey="objID" Type="TipoArea" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AreaSafra" Member="AreaSafra">
+    <Type Name="AreaSafra">
+      <Column Name="ObjID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="tipoTaxa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tamanho" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="revisado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dataRevisao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="servico" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IDProprietarioFatura" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDServico" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="dataInclusao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="AreaSafra_Gerenciamento" Member="Gerenciamento" ThisKey="ObjID" OtherKey="IDAreaSafra" Type="Gerenciamento" />
+      <Association Name="AreaSafra_ObjetivoRecomendacao" Member="ObjetivoRecomendacao" ThisKey="ObjID" OtherKey="IDAreaSafra" Type="ObjetivoRecomendacao" />
+      <Association Name="Area_AreaSafra" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Proprietario_AreaSafra" Member="Proprietario" ThisKey="IDProprietarioFatura" OtherKey="objID" Type="Proprietario" IsForeignKey="true" />
+      <Association Name="Safra_AreaSafra" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AreaSafraMGF" Member="AreaSafraMGF">
+    <Type Name="AreaSafraMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="tamanho" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="numServico" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="resumoOperacional" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="AreaSafraMGF_AmostraMGF" Member="AmostraMGF" ThisKey="objID" OtherKey="IDAreaSafraMGF" Type="AmostraMGF" />
+      <Association Name="AreaSafraMGF_ProdutoMGF" Member="ProdutoMGF" ThisKey="objID" OtherKey="IDAreaSafraMGF" Type="ProdutoMGF" />
+      <Association Name="AreaSafraMGF_RotacaoCultura" Member="RotacaoCultura" ThisKey="objID" OtherKey="IDAreaSafraMGF" Type="RotacaoCultura" />
+      <Association Name="AreaSafraMGF_ZonaManejoMGF" Member="ZonaManejoMGF" ThisKey="objID" OtherKey="IDAreaSafraMGF" Type="ZonaManejoMGF" />
+      <Association Name="Area_AreaSafraMGF" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Safra_AreaSafraMGF" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AreaServico" Member="AreaServico">
+    <Type Name="AreaServico">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDRefArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDServico" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDProposta" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="preco" Type="System.Decimal" DbType="Decimal(9,2) NOT NULL" CanBeNull="false" />
+      <Column Name="tamanho" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="proposta" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="analise" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="descricaoArea" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Proposta_AreaServico" Member="Proposta1" ThisKey="IDProposta" OtherKey="objID" Type="Proposta" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Safra_AreaServico" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+      <Association Name="Servico_AreaServico" Member="Servico" ThisKey="IDServico" OtherKey="objID" Type="Servico" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Arquivo" Member="Arquivo">
+    <Type Name="Arquivo">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCliente" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDPropriedadeRural" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="extensao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dtEnvio" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dtVisualizacao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="versao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Area_Arquivo" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="PropriedadeRural_Arquivo" Member="PropriedadeRural" ThisKey="objID" OtherKey="objID" Type="PropriedadeRural" IsForeignKey="true" />
+      <Association Name="Proprietario_Arquivo" Member="Proprietario" ThisKey="IDCliente" OtherKey="objID" Type="Proprietario" IsForeignKey="true" />
+      <Association Name="Usuario_Arquivo" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetRoles" Member="AspNetRoles">
+    <Type Name="AspNetRoles">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Association Name="AspNetRoles_AspNetUserRoles" Member="AspNetUserRoles" ThisKey="Id" OtherKey="RoleId" Type="AspNetUserRoles" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetUserClaims" Member="AspNetUserClaims">
+    <Type Name="AspNetUserClaims">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ClaimType" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ClaimValue" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="AspNetUsers_AspNetUserClaims" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetUserLogins" Member="AspNetUserLogins">
+    <Type Name="AspNetUserLogins">
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoginProvider" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProviderKey" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="AspNetUsers_AspNetUserLogins" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetUserRoles" Member="AspNetUserRoles">
+    <Type Name="AspNetUserRoles">
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="AspNetRoles_AspNetUserRoles" Member="AspNetRoles" ThisKey="RoleId" OtherKey="Id" Type="AspNetRoles" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="AspNetUsers_AspNetUserRoles" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetUsers" Member="AspNetUsers">
+    <Type Name="AspNetUsers">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="EmailConfirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SecurityStamp" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumberConfirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TwoFactorEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LockoutEndDateUtc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LockoutEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AccessFailedCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="Nome" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="AspNetUsers_AspNetUserClaims" Member="AspNetUserClaims" ThisKey="Id" OtherKey="UserId" Type="AspNetUserClaims" />
+      <Association Name="AspNetUsers_AspNetUserLogins" Member="AspNetUserLogins" ThisKey="Id" OtherKey="UserId" Type="AspNetUserLogins" />
+      <Association Name="AspNetUsers_AspNetUserRoles" Member="AspNetUserRoles" ThisKey="Id" OtherKey="UserId" Type="AspNetUserRoles" />
+      <Association Name="Usuario_AspNetUsers" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Atividade" Member="Atividade">
+    <Type Name="Atividade">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDServico" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="prazo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="equipeExecucao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="sequencia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="intervalo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="atividadeExtra" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="iconeAtividade" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Atividade_ControleAtividade" Member="ControleAtividade" ThisKey="objID" OtherKey="IDAtividade" Type="ControleAtividade" />
+      <Association Name="Servico_Atividade" Member="Servico" ThisKey="IDServico" OtherKey="objID" Type="Servico" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Auditoria" Member="Auditoria">
+    <Type Name="Auditoria">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="proprietario" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="propriedade" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="safra" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="area" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="grid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ciclo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="usuario" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="objeto" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="operacao" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="classe" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="detalhamento" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BnFoliarSolo" Member="BnFoliarSolo">
+    <Type Name="BnFoliarSolo">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAnaliseFoliar" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="n" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="p" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="k" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ca" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="b" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="zn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fe" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="cu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="co" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="AnaliseFoliar_BnFoliarSolo" Member="AnaliseFoliar" ThisKey="IDAnaliseFoliar" OtherKey="objID" Type="AnaliseFoliar" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CicloProducao" Member="CicloProducao">
+    <Type Name="CicloProducao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="identificacao" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="dataPlantio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dataColheita" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="prodMinima" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="prodMaxima" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="prodReal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="observacoes" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="inoculante" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ordemCiclo" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDVariedadeCultura" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDCulturaAnterior" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="Parametro" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="dataRealPlantio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tamanho" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="CicloProducao_ControleAlteracao" Member="ControleAlteracao" ThisKey="objID" OtherKey="IDCicloProducao" Type="ControleAlteracao" />
+      <Association Name="CicloProducao_GraficoRelatorio" Member="GraficoRelatorio" ThisKey="objID" OtherKey="IDCicloProducao" Type="GraficoRelatorio" />
+      <Association Name="Area_CicloProducao" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Cultura_CicloProducao" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Cultura_CicloProducao1" Member="Cultura1" ThisKey="IDCulturaAnterior" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Safra_CicloProducao" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+      <Association Name="Usuario_CicloProducao" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+      <Association Name="VariedadeCultura_CicloProducao" Member="VariedadeCultura" ThisKey="IDVariedadeCultura" OtherKey="objID" Type="VariedadeCultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cliente" Member="Cliente">
+    <Type Name="Cliente">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tipoCliente" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cpfCnpj" Type="System.String" DbType="VarChar(18) NOT NULL" CanBeNull="false" />
+      <Column Name="usuario" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="senha" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="caminhoBD" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="codigoEmpresa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="telefone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="observacoes" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ativo" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="Cliente_Periodo" Member="Periodo" ThisKey="objID" OtherKey="IDCliente" Type="Periodo" />
+      <Association Name="Cliente_Periodo1" Member="Periodo1" ThisKey="objID" OtherKey="IDCliente" Type="Periodo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ControleAlteracao" Member="ControleAlteracao">
+    <Type Name="ControleAlteracao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tabela" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDGrid" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDCicloProducao" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="revisado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dataRevisao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Area_ControleAlteracao" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="CicloProducao_ControleAlteracao" Member="CicloProducao" ThisKey="IDCicloProducao" OtherKey="objID" Type="CicloProducao" IsForeignKey="true" />
+      <Association Name="Grid_ControleAlteracao" Member="Grid" ThisKey="IDGrid" OtherKey="objID" Type="Grid" IsForeignKey="true" />
+      <Association Name="Safra_ControleAlteracao" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ControleAlteracaoParametro" Member="ControleAlteracaoParametro">
+    <Type Name="ControleAlteracaoParametro">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPropriedadeRural" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="Item" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="InfoAnterior" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="InfoAtual" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Association Name="Area_ControleAlteracaoParametro" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="PropriedadeRural_ControleAlteracaoParametro" Member="PropriedadeRural" ThisKey="IDPropriedadeRural" OtherKey="objID" Type="PropriedadeRural" IsForeignKey="true" />
+      <Association Name="Safra_ControleAlteracaoParametro" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+      <Association Name="Usuario_ControleAlteracaoParametro" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ControleAtividade" Member="ControleAtividade">
+    <Type Name="ControleAtividade">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAreaSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDAtividade" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDServico" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="dataInicio" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="dataFim" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="sequencia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="responsavel" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="detalhe" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ciclo" Type="System.String" DbType="Char(7)" CanBeNull="true" />
+      <Association Name="Atividade_ControleAtividade" Member="Atividade" ThisKey="IDAtividade" OtherKey="objID" Type="Atividade" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Corretivo" Member="Corretivo">
+    <Type Name="Corretivo">
+      <Column Name="objID" Type="System.String" DbType="VarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="qtde" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="prnt" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cao" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mgo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="p2o5" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="k2o" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="marcado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opcaoMarcada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDGrid" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDFornecedor" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="custo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="eficiencia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="perfil" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ca" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Corretivo_CorretivoPlantio" Member="CorretivoPlantio" ThisKey="objID" OtherKey="IDCorretivo" Type="CorretivoPlantio" />
+      <Association Name="Area_Corretivo" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Fornecedor_Corretivo" Member="Fornecedor" ThisKey="IDFornecedor" OtherKey="objID" Type="Fornecedor" IsForeignKey="true" />
+      <Association Name="Grid_Corretivo" Member="Grid" ThisKey="IDGrid" OtherKey="objID" Type="Grid" IsForeignKey="true" />
+      <Association Name="Safra_Corretivo" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+      <Association Name="Usuario_Corretivo" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CorretivoPlantio" Member="CorretivoPlantio">
+    <Type Name="CorretivoPlantio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAnalisePlantio" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDZmPlantio" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDCorretivo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="eficiencia" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="kg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="prnt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="cao" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="mgo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="p2o5" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="k20" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ca" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="AnalisePlantio_CorretivoPlantio" Member="AnalisePlantio" ThisKey="IDAnalisePlantio" OtherKey="objID" Type="AnalisePlantio" IsForeignKey="true" />
+      <Association Name="Corretivo_CorretivoPlantio" Member="Corretivo" ThisKey="IDCorretivo" OtherKey="objID" Type="Corretivo" IsForeignKey="true" />
+      <Association Name="ZmPlantio_CorretivoPlantio" Member="ZmPlantio" ThisKey="IDZmPlantio" OtherKey="objID" Type="ZmPlantio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cotacao" Member="Cotacao">
+    <Type Name="Cotacao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDProduto" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="valor" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="regiao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Safra_Cotacao" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cultura" Member="Cultura">
+    <Type Name="Cultura">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="nitrogenio" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ciclo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="decomposicao" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nSimb" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="nSimbMedida" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDUnidadeMedida" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Association Name="Cultura_Amostra" Member="Amostra" ThisKey="objID" OtherKey="IDCultura" Type="Amostra" />
+      <Association Name="Cultura_Amostra1" Member="Amostra1" ThisKey="objID" OtherKey="IDCultura" Type="Amostra" />
+      <Association Name="Cultura_CicloProducao" Member="CicloProducao" ThisKey="objID" OtherKey="IDCultura" Type="CicloProducao" />
+      <Association Name="Cultura_CicloProducao1" Member="CicloProducao1" ThisKey="objID" OtherKey="IDCulturaAnterior" Type="CicloProducao" />
+      <Association Name="Cultura_EstagioCultura" Member="EstagioCultura" ThisKey="objID" OtherKey="IDCultura" Type="EstagioCultura" />
+      <Association Name="Cultura_ExtracaoCultura" Member="ExtracaoCultura" ThisKey="objID" OtherKey="IDCultura" Type="ExtracaoCultura" />
+      <Association Name="Cultura_NiveisBnSolo" Member="NiveisBnSolo" ThisKey="objID" OtherKey="IDCultura" Type="NiveisBnSolo" />
+      <Association Name="Cultura_ParametroArea" Member="ParametroArea" ThisKey="objID" OtherKey="IDUltimaCultura" Type="ParametroArea" />
+      <Association Name="Cultura_PartePlanta" Member="PartePlanta" ThisKey="objID" OtherKey="IDCultura" Type="PartePlanta" />
+      <Association Name="Cultura_PatogenoCultura" Member="PatogenoCultura" ThisKey="objID" OtherKey="IDCultura" Type="PatogenoCultura" />
+      <Association Name="Cultura_Plantio" Member="Plantio" ThisKey="objID" OtherKey="IDCultura" Type="Plantio" />
+      <Association Name="Cultura_Projeto" Member="Projeto" ThisKey="objID" OtherKey="IDCultura" Type="Projeto" />
+      <Association Name="Cultura_RecomendacaoFoliar" Member="RecomendacaoFoliar" ThisKey="objID" OtherKey="IDCultura" Type="RecomendacaoFoliar" />
+      <Association Name="Cultura_Resteva" Member="Resteva" ThisKey="objID" OtherKey="IDCultura" Type="Resteva" />
+      <Association Name="Cultura_RestevaColetada" Member="RestevaColetada" ThisKey="objID" OtherKey="IDCultura" Type="RestevaColetada" />
+      <Association Name="Cultura_RotacaoCultura" Member="RotacaoCultura" ThisKey="objID" OtherKey="IDCultura" Type="RotacaoCultura" />
+      <Association Name="Cultura_UsoProduto" Member="UsoProduto" ThisKey="objID" OtherKey="IDCultura" Type="UsoProduto" />
+      <Association Name="Cultura_VariedadeCultura" Member="VariedadeCultura" ThisKey="objID" OtherKey="IDCultura" Type="VariedadeCultura" />
+      <Association Name="UnidadeMedida_Cultura" Member="UnidadeMedida" ThisKey="IDUnidadeMedida" OtherKey="objID" Type="UnidadeMedida" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EnvioAmostra" Member="EnvioAmostra">
+    <Type Name="EnvioAmostra">
+      <Column Name="objID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDLaboratorio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDProprietario" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDProprietarioFatura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="dataEmissao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dataEnvio" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="enviado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="EnvioAmostra_AmostraLaboratorio" Member="AmostraLaboratorio" ThisKey="objID" OtherKey="IDEnvioAmostra" Type="AmostraLaboratorio" />
+      <Association Name="Laboratorio_EnvioAmostra" Member="Laboratorio" ThisKey="IDLaboratorio" OtherKey="objID" Type="Laboratorio" IsForeignKey="true" />
+      <Association Name="Proprietario_EnvioAmostra" Member="Proprietario" ThisKey="IDProprietario" OtherKey="objID" Type="Proprietario" IsForeignKey="true" />
+      <Association Name="Proprietario_EnvioAmostra1" Member="Proprietario1" ThisKey="IDProprietarioFatura" OtherKey="objID" Type="Proprietario" IsForeignKey="true" />
+      <Association Name="Usuario_EnvioAmostra" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstagioCultura" Member="EstagioCultura">
+    <Type Name="EstagioCultura">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codigo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="detalhamento" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="dapMedio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="dapPrecoce" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dapTardio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="EstagioCultura_AnaliseFoliar" Member="AnaliseFoliar" ThisKey="objID" OtherKey="IDEstagioCultura" Type="AnaliseFoliar" />
+      <Association Name="EstagioCultura_FaixaTeor" Member="FaixaTeor" ThisKey="objID" OtherKey="IDEstagioCultura" Type="FaixaTeor" />
+      <Association Name="EstagioCultura_Fertilizante" Member="Fertilizante" ThisKey="objID" OtherKey="IDEstagioCultura" Type="Fertilizante" />
+      <Association Name="EstagioCultura_InsumoPlanejamento" Member="InsumoPlanejamento" ThisKey="objID" OtherKey="IDEstagioCultura" Type="InsumoPlanejamento" />
+      <Association Name="Cultura_EstagioCultura" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstoquePlanejamento" Member="EstoquePlanejamento">
+    <Type Name="EstoquePlanejamento">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPropriedadeRural" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUnidadeMedida" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDProduto" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="quantidade" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Association Name="PropriedadeRural_EstoquePlanejamento" Member="PropriedadeRural" ThisKey="IDPropriedadeRural" OtherKey="objID" Type="PropriedadeRural" IsForeignKey="true" />
+      <Association Name="Safra_EstoquePlanejamento" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+      <Association Name="UnidadeMedida_EstoquePlanejamento" Member="UnidadeMedida" ThisKey="IDUnidadeMedida" OtherKey="objID" Type="UnidadeMedida" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ExtracaoCultura" Member="ExtracaoCultura">
+    <Type Name="ExtracaoCultura">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="nutriente" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="nivel1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nivel2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nivel3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nivel4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nivel5" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Cultura_ExtracaoCultura" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FaixaTeor" Member="FaixaTeor">
+    <Type Name="FaixaTeor">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDEstagioCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDPartePlanta" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="nutriente" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="nivel1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nivel2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nivel3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nivel4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="EstagioCultura_FaixaTeor" Member="EstagioCultura" ThisKey="IDEstagioCultura" OtherKey="objID" Type="EstagioCultura" IsForeignKey="true" />
+      <Association Name="PartePlanta_FaixaTeor" Member="PartePlanta" ThisKey="IDPartePlanta" OtherKey="objID" Type="PartePlanta" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fertilizante" Member="Fertilizante">
+    <Type Name="Fertilizante">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="kgha" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="daedap" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="n" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="p2o5" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="k2o" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="s" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ca" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mg" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="b" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="co" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="eficiencia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="marcado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opcaoMarcada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDEstagioCultura" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDCicloProducao" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDFornecedor" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="custo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="tipoFertilizante" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ativo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="densidade" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="EstagioCultura_Fertilizante" Member="EstagioCultura" ThisKey="IDEstagioCultura" OtherKey="objID" Type="EstagioCultura" IsForeignKey="true" />
+      <Association Name="Fornecedor_Fertilizante" Member="Fornecedor" ThisKey="IDFornecedor" OtherKey="objID" Type="Fornecedor" IsForeignKey="true" />
+      <Association Name="Usuario_Fertilizante" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FormulacaoAdubo" Member="FormulacaoAdubo">
+    <Type Name="FormulacaoAdubo">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="rston" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="kgton" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="n" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="p2o5" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="k2o" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="s" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ca" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mg" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="b" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="co" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IDAdubo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="Adubo_FormulacaoAdubo" Member="Adubo" ThisKey="IDAdubo" OtherKey="objID" Type="Adubo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fornecedor" Member="Fornecedor">
+    <Type Name="Fornecedor">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cnpj" Type="System.String" DbType="Char(14)" CanBeNull="true" />
+      <Association Name="Fornecedor_Corretivo" Member="Corretivo" ThisKey="objID" OtherKey="IDFornecedor" Type="Corretivo" />
+      <Association Name="Fornecedor_Fertilizante" Member="Fertilizante" ThisKey="objID" OtherKey="IDFornecedor" Type="Fertilizante" />
+      <Association Name="Fornecedor_Gesso" Member="Gesso" ThisKey="objID" OtherKey="IDFornecedor" Type="Gesso" />
+      <Association Name="Fornecedor_ProdutoMGF" Member="ProdutoMGF" ThisKey="objID" OtherKey="IDFornecedor" Type="ProdutoMGF" />
+      <Association Name="Fornecedor_ProprietarioFornecedor" Member="ProprietarioFornecedor" ThisKey="objID" OtherKey="IDFornecedor" Type="ProprietarioFornecedor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gerenciamento" Member="Gerenciamento">
+    <Type Name="Gerenciamento">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAreaSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Vendedor" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fazenda" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Municipio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Servico" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Area" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hectare" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Ciclo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Geo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Protocolo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EnvioColeta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Coleta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Equipe" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EnvioLab" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RetornoLab" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RecebAnalise" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MapaFertilidade" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RecomCorretivo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RecomFertilizante" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EnvioRecomendacao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MapaATV" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EnvioCalcario" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EnvioEnxofre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EnvioFosforo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EnvioPotassio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EnvioOutros" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Encadernacao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Entrega" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RecebLab" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="AreaSafra_Gerenciamento" Member="AreaSafra" ThisKey="IDAreaSafra" OtherKey="ObjID" Type="AreaSafra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gesso" Member="Gesso">
+    <Type Name="Gesso">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="qtde" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cao" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="marcado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opcaoMarcada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDGrid" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDFornecedor" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="custo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Area_Gesso" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Fornecedor_Gesso" Member="Fornecedor" ThisKey="IDFornecedor" OtherKey="objID" Type="Fornecedor" IsForeignKey="true" />
+      <Association Name="Grid_Gesso" Member="Grid" ThisKey="IDGrid" OtherKey="objID" Type="Grid" IsForeignKey="true" />
+      <Association Name="Safra_Gesso" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+      <Association Name="Usuario_Gesso" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GraficoRelatorio" Member="GraficoRelatorio">
+    <Type Name="GraficoRelatorio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="nivel" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="indice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="valorNutriente" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="IDCicloProducao" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Association Name="CicloProducao_GraficoRelatorio" Member="CicloProducao" ThisKey="IDCicloProducao" OtherKey="objID" Type="CicloProducao" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Grid" Member="Grid">
+    <Type Name="Grid">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="area" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="referenciaGeografica" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDTipoArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="Grid_AnaliseSolo" Member="AnaliseSolo" ThisKey="objID" OtherKey="IDGrid" Type="AnaliseSolo" />
+      <Association Name="Grid_ControleAlteracao" Member="ControleAlteracao" ThisKey="objID" OtherKey="IDGrid" Type="ControleAlteracao" />
+      <Association Name="Grid_Corretivo" Member="Corretivo" ThisKey="objID" OtherKey="IDGrid" Type="Corretivo" />
+      <Association Name="Grid_Gesso" Member="Gesso" ThisKey="objID" OtherKey="IDGrid" Type="Gesso" />
+      <Association Name="Grid_RestevaColetada" Member="RestevaColetada" ThisKey="objID" OtherKey="IDGrid" Type="RestevaColetada" />
+      <Association Name="Area_Grid" Member="Area1" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="TipoArea_Grid" Member="TipoArea" ThisKey="IDTipoArea" OtherKey="objID" Type="TipoArea" IsForeignKey="true" />
+      <Association Name="Usuario_Grid" Member="Usuario" ThisKey="IDUsuario" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Imagem" Member="Imagem">
+    <Type Name="Imagem">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="imgZonaManejo" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="imgPontosColeta" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="imgTipoSolo" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="imgCompactacao" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="tipoSolo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Imagem_ImagemAplicacao" Member="ImagemAplicacao" ThisKey="objID" OtherKey="IDImagem" Type="ImagemAplicacao" />
+      <Association Name="Imagem_ImagemItem" Member="ImagemItem" ThisKey="objID" OtherKey="IDImagem" Type="ImagemItem" />
+      <Association Name="Area_Imagem" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Safra_Imagem" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ImagemAplicacao" Member="ImagemAplicacao">
+    <Type Name="ImagemAplicacao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDImagem" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="nutriente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="imgAplicacao" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Imagem_ImagemAplicacao" Member="Imagem" ThisKey="IDImagem" OtherKey="objID" Type="Imagem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ImagemItem" Member="ImagemItem">
+    <Type Name="ImagemItem">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDImagem" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="indice" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nutriente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="imgNutriente" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="legenda1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="formatoGerado" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="distPontos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="perBuffer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="potencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tipoDistPontos" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Imagem_ImagemItem" Member="Imagem" ThisKey="IDImagem" OtherKey="objID" Type="Imagem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ImagemItemMGF" Member="ImagemItemMGF">
+    <Type Name="ImagemItemMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDImagemMGF" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="item" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="imgItem" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="legenda1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="legenda6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="indice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDUnidadeMGF" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="opcao" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="formatoGerado" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="distPontos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="perBuffer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="potencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ImagemMGF_ImagemItemMGF" Member="ImagemMGF" ThisKey="IDImagemMGF" OtherKey="objID" Type="ImagemMGF" IsForeignKey="true" />
+      <Association Name="UnidadeMGF_ImagemItemMGF" Member="UnidadeMGF" ThisKey="IDUnidadeMGF" OtherKey="objID" Type="UnidadeMGF" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ImagemMGF" Member="ImagemMGF">
+    <Type Name="ImagemMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="imgZonaManejo" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="imgPontosColeta" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="imgTipoSolo" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="imgCompactacao" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="tipoSolo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="numServico" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ImagemMGF_ImagemItemMGF" Member="ImagemItemMGF" ThisKey="objID" OtherKey="IDImagemMGF" Type="ImagemItemMGF" />
+      <Association Name="Area_ImagemMGF" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Safra_ImagemMGF" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InsumoPlanejamento" Member="InsumoPlanejamento">
+    <Type Name="InsumoPlanejamento">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDProjeto" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDEstagioCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fornecedor" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="funcao" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="quantidade" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="preco" Type="System.Decimal" DbType="Decimal(15,4) NOT NULL" CanBeNull="false" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="utilizacao" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="alvo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="acao" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="doseBaixa" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="doseMedia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="doseAlta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="unidade" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Association Name="Area_InsumoPlanejamento" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="EstagioCultura_InsumoPlanejamento" Member="EstagioCultura" ThisKey="IDEstagioCultura" OtherKey="objID" Type="EstagioCultura" IsForeignKey="true" />
+      <Association Name="Projeto_InsumoPlanejamento" Member="Projeto" ThisKey="IDProjeto" OtherKey="objID" Type="Projeto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Laboratorio" Member="Laboratorio">
+    <Type Name="Laboratorio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cnpj" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="endereco" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="cep" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="telefone" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Association Name="Laboratorio_AmostraLaboratorio" Member="AmostraLaboratorio" ThisKey="objID" OtherKey="IDLaboratorio" Type="AmostraLaboratorio" />
+      <Association Name="Laboratorio_AmostraMGF" Member="AmostraMGF" ThisKey="objID" OtherKey="IDLaboratorio" Type="AmostraMGF" />
+      <Association Name="Laboratorio_EnvioAmostra" Member="EnvioAmostra" ThisKey="objID" OtherKey="IDLaboratorio" Type="EnvioAmostra" />
+      <Association Name="Laboratorio_PatogenoLabUnd" Member="PatogenoLabUnd" ThisKey="objID" OtherKey="IDLaboratorio" Type="PatogenoLabUnd" />
+      <Association Name="Laboratorio_Resteva" Member="Resteva" ThisKey="objID" OtherKey="IDLaboratorio" Type="Resteva" />
+      <Association Name="Laboratorio_RestevaColetada" Member="RestevaColetada" ThisKey="objID" OtherKey="IDLaboratorio" Type="RestevaColetada" />
+      <Association Name="Laboratorio_UnidadeLaboratorio" Member="UnidadeLaboratorio" ThisKey="objID" OtherKey="IDLaboratorio" Type="UnidadeLaboratorio" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NiveisBnSolo" Member="NiveisBnSolo">
+    <Type Name="NiveisBnSolo">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="elemento" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="deficiente" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="minimo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="maximo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="toxico" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="n" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="p" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="k" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ca" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="mg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="s" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="b" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="zn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="mn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fe" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="mo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="co" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Cultura_NiveisBnSolo" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ObjetivoArea" Member="ObjetivoArea">
+    <Type Name="ObjetivoArea">
+      <Column Name="ObjID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="Condicao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Situacao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Produto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Opcao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Profundidade" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="Elemento" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Metodo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Objetivo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DoseMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DoseMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DoseMed" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Area_ObjetivoArea" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Safra_ObjetivoArea" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ObjetivoRecomendacao" Member="ObjetivoRecomendacao">
+    <Type Name="ObjetivoRecomendacao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAreaSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="elemento" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="objetivo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="complemento" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDUsuarioCriacao" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUsuarioAlteracao" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="AreaSafra_ObjetivoRecomendacao" Member="AreaSafra" ThisKey="IDAreaSafra" OtherKey="ObjID" Type="AreaSafra" IsForeignKey="true" />
+      <Association Name="Usuario_ObjetivoRecomendacao" Member="Usuario" ThisKey="IDUsuarioAlteracao" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+      <Association Name="Usuario_ObjetivoRecomendacao1" Member="Usuario1" ThisKey="IDUsuarioCriacao" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ParametroArea" Member="ParametroArea">
+    <Type Name="ParametroArea">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="areaArrendada" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="tempoRestante" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="condicaoAtual" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="tipoManejo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="fosfatoUtilizado" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="anoAbertura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="inicioPlantio" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="IDUltimaCultura" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="produtividadeArea" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="perfilSolo" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="ultimaGessagem" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="doseGessagem" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="taxaAplicacaoGessagem" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="CondAplicGessagem" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="correcaoSolo" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="ultimaCalagem" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="tipoCalcario" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="doseCalagem" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="taxaAplicacaoCalagem" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="CondAplicCalagem" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="equipamentoIncorporado" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="observacao" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="efetuouFosfatagem" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="anoUltimaFosfatagem" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="formaAplicacao" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="minaPreferencial" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dataInclusao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="proximaCultura" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="plantarHF" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="utilizarGesso" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="dosePrevistaGesso" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="corrigirFosforo" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="observacaoComplementar" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Area_ParametroArea" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Cultura_ParametroArea" Member="Cultura" ThisKey="IDUltimaCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Safra_ParametroArea" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ParametroPlanArea" Member="ParametroPlanArea">
+    <Type Name="ParametroPlanArea">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDProjetoArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="observacao" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="ProjetoArea_ParametroPlanArea" Member="ProjetoArea" ThisKey="IDProjetoArea" OtherKey="objID" Type="ProjetoArea" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ParametroPropriedade" Member="ParametroPropriedade">
+    <Type Name="ParametroPropriedade">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDPropriedade" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="marcaEquipamento" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="utilizaraAplicLanco" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="fosforo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="enxofre" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="nitrogenio" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="empresasPreferenciais" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="observacao" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="tipoFosforo" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Association Name="ParametroPropriedade_ProdutoEstoque" Member="ProdutoEstoque" ThisKey="objID" OtherKey="IDParamPropriedade" Type="ProdutoEstoque" />
+      <Association Name="PropriedadeRural_ParametroPropriedade" Member="PropriedadeRural" ThisKey="IDPropriedade" OtherKey="objID" Type="PropriedadeRural" IsForeignKey="true" />
+      <Association Name="Safra_ParametroPropriedade" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ParametroRecomendacao" Member="ParametroRecomendacao">
+    <Type Name="ParametroRecomendacao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="observacao" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="obsInterno" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Area_ParametroRecomendacao" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Safra_ParametroRecomendacao" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Parcelamento" Member="Parcelamento">
+    <Type Name="Parcelamento">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDProposta" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="numeroParcela" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="valor" Type="System.Decimal" DbType="Decimal(9,2) NOT NULL" CanBeNull="false" />
+      <Column Name="vencimento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Proposta_Parcelamento" Member="Proposta" ThisKey="IDProposta" OtherKey="objID" Type="Proposta" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PartePlanta" Member="PartePlanta">
+    <Type Name="PartePlanta">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="PartePlanta_AnaliseFoliar" Member="AnaliseFoliar" ThisKey="objID" OtherKey="IDPartePlanta" Type="AnaliseFoliar" />
+      <Association Name="PartePlanta_FaixaTeor" Member="FaixaTeor" ThisKey="objID" OtherKey="IDPartePlanta" Type="FaixaTeor" />
+      <Association Name="Cultura_PartePlanta" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Patogeno" Member="Patogeno">
+    <Type Name="Patogeno">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="grupo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="faixaSoloBaixa" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="faixaSoloAlta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="faixaRaizBaixa" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="faixaRaizAlta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="faixaColoniaBaixa" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="faixaColoniaAlta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Patogeno_AmostraPatogenoMGF" Member="AmostraPatogenoMGF" ThisKey="objID" OtherKey="IDPatogeno" Type="AmostraPatogenoMGF" />
+      <Association Name="Patogeno_PatogenoCultura" Member="PatogenoCultura" ThisKey="objID" OtherKey="IDPatogeno" Type="PatogenoCultura" />
+      <Association Name="Patogeno_PatogenoLabUnd" Member="PatogenoLabUnd" ThisKey="objID" OtherKey="IDPatogeno" Type="PatogenoLabUnd" />
+      <Association Name="Patogeno_PatogenoVariedade" Member="PatogenoVariedade" ThisKey="objID" OtherKey="IDPatogeno" Type="PatogenoVariedade" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PatogenoCultura" Member="PatogenoCultura">
+    <Type Name="PatogenoCultura">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDPatogeno" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="perda" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Cultura_PatogenoCultura" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Patogeno_PatogenoCultura" Member="Patogeno" ThisKey="IDPatogeno" OtherKey="objID" Type="Patogeno" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PatogenoLabUnd" Member="PatogenoLabUnd">
+    <Type Name="PatogenoLabUnd">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPatogeno" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDLaboratorio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUnidadeMGFSolo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDUnidadeMGFRaiz" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDUnidadeMGFColonia" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="Laboratorio_PatogenoLabUnd" Member="Laboratorio" ThisKey="IDLaboratorio" OtherKey="objID" Type="Laboratorio" IsForeignKey="true" />
+      <Association Name="Patogeno_PatogenoLabUnd" Member="Patogeno" ThisKey="IDPatogeno" OtherKey="objID" Type="Patogeno" IsForeignKey="true" />
+      <Association Name="UnidadeMGF_PatogenoLabUnd" Member="UnidadeMGF" ThisKey="IDUnidadeMGFColonia" OtherKey="objID" Type="UnidadeMGF" IsForeignKey="true" />
+      <Association Name="UnidadeMGF_PatogenoLabUnd1" Member="UnidadeMGF1" ThisKey="IDUnidadeMGFRaiz" OtherKey="objID" Type="UnidadeMGF" IsForeignKey="true" />
+      <Association Name="UnidadeMGF_PatogenoLabUnd2" Member="UnidadeMGF2" ThisKey="IDUnidadeMGFSolo" OtherKey="objID" Type="UnidadeMGF" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PatogenoVariedade" Member="PatogenoVariedade">
+    <Type Name="PatogenoVariedade">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDVariedadeCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDPatogeno" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="reacao" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="fatorRestritivo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="raca" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Patogeno_PatogenoVariedade" Member="Patogeno" ThisKey="IDPatogeno" OtherKey="objID" Type="Patogeno" IsForeignKey="true" />
+      <Association Name="VariedadeCultura_PatogenoVariedade" Member="VariedadeCultura" ThisKey="IDVariedadeCultura" OtherKey="objID" Type="VariedadeCultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Periodo" Member="Periodo">
+    <Type Name="Periodo">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCliente" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ano" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="janeiro" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="fevereiro" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="marco" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="abril" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="maio" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="junho" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="julho" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="agosto" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="setembro" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="outubro" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="novembro" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="dezembro" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Association Name="Cliente_Periodo" Member="Cliente" ThisKey="IDCliente" OtherKey="objID" Type="Cliente" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Cliente_Periodo1" Member="Cliente1" ThisKey="IDCliente" OtherKey="objID" Type="Cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlanAreaVariedade" Member="PlanAreaVariedade">
+    <Type Name="PlanAreaVariedade">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPlanVariedade" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="tamanho" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Area_PlanAreaVariedade" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="PlanVariedade_PlanAreaVariedade" Member="PlanVariedade" ThisKey="IDPlanVariedade" OtherKey="objID" Type="PlanVariedade" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Plantio" Member="Plantio">
+    <Type Name="Plantio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ordem" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ha" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="clima" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="espacamento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="produtividade" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Plantio_ValidacaoPlantio" Member="ValidacaoPlantio" ThisKey="objID" OtherKey="IDPlantio" Type="ValidacaoPlantio" />
+      <Association Name="Plantio_VariedadePlantio" Member="VariedadePlantio" ThisKey="objID" OtherKey="IDPlantio" Type="VariedadePlantio" />
+      <Association Name="Plantio_ZmPlantio" Member="ZmPlantio" ThisKey="objID" OtherKey="IDPlantio" Type="ZmPlantio" />
+      <Association Name="Area_Plantio" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Cultura_Plantio" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Safra_Plantio" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlanVariedade" Member="PlanVariedade">
+    <Type Name="PlanVariedade">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDVariedadeCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDProjeto" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="forma" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="dias" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="epocaPlantio" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[is]" Member="is" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="populacao" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pms" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="pg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="espacamento" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="quantidade" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="IDUnidadeMedida" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="preco" Type="System.Decimal" DbType="Decimal(15,2) NOT NULL" CanBeNull="false" />
+      <Association Name="PlanVariedade_PlanAreaVariedade" Member="PlanAreaVariedade" ThisKey="objID" OtherKey="IDPlanVariedade" Type="PlanAreaVariedade" />
+      <Association Name="Projeto_PlanVariedade" Member="Projeto" ThisKey="IDProjeto" OtherKey="objID" Type="Projeto" IsForeignKey="true" />
+      <Association Name="UnidadeMedida_PlanVariedade" Member="UnidadeMedida" ThisKey="IDUnidadeMedida" OtherKey="objID" Type="UnidadeMedida" IsForeignKey="true" />
+      <Association Name="VariedadeCultura_PlanVariedade" Member="VariedadeCultura" ThisKey="IDVariedadeCultura" OtherKey="objID" Type="VariedadeCultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Problema" Member="Problema">
+    <Type Name="Problema">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="nivel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ano" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Association Name="Area_Problema" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProdutividadeVariedade" Member="ProdutividadeVariedade">
+    <Type Name="ProdutividadeVariedade">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDRegiao" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDVariedadeCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUnidadeMedida" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="qtdeProduzida" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ciclo" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="publicacao" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="autor" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ano" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="condicao" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Association Name="Regiao_ProdutividadeVariedade" Member="Regiao" ThisKey="IDRegiao" OtherKey="objID" Type="Regiao" IsForeignKey="true" />
+      <Association Name="UnidadeMedida_ProdutividadeVariedade" Member="UnidadeMedida" ThisKey="IDUnidadeMedida" OtherKey="objID" Type="UnidadeMedida" IsForeignKey="true" />
+      <Association Name="VariedadeCultura_ProdutividadeVariedade" Member="VariedadeCultura" ThisKey="IDVariedadeCultura" OtherKey="objID" Type="VariedadeCultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProdutoEstoque" Member="ProdutoEstoque">
+    <Type Name="ProdutoEstoque">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDParamPropriedade" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="qtde" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="und" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="tipoProduto" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="nomeProduto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="n" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="p205" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="k2o" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="s" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ca" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mg" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="prnt" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cao" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mgo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="b" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="co" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fornecedor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="ParametroPropriedade_ProdutoEstoque" Member="ParametroPropriedade" ThisKey="IDParamPropriedade" OtherKey="objID" Type="ParametroPropriedade" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProdutoMGF" Member="ProdutoMGF">
+    <Type Name="ProdutoMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDZonaManejoMGF" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDAreaSafraMGF" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDFornecedor" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="unidade" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="quantidade" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="preco" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tipoTratamento" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="alvo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="doseBaixa" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="doseMedia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="doseAlta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ts" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="tss" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="tipoProduto" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="classe" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="principioAtivo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="phIdeal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IDUnidadeMedida" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="ProdutoMGF_UsoProduto" Member="UsoProduto" ThisKey="objID" OtherKey="IDProduto" Type="UsoProduto" />
+      <Association Name="AreaSafraMGF_ProdutoMGF" Member="AreaSafraMGF" ThisKey="IDAreaSafraMGF" OtherKey="objID" Type="AreaSafraMGF" IsForeignKey="true" />
+      <Association Name="Fornecedor_ProdutoMGF" Member="Fornecedor" ThisKey="IDFornecedor" OtherKey="objID" Type="Fornecedor" IsForeignKey="true" />
+      <Association Name="UnidadeMedida_ProdutoMGF" Member="UnidadeMedida" ThisKey="IDUnidadeMedida" OtherKey="objID" Type="UnidadeMedida" IsForeignKey="true" />
+      <Association Name="ZonaManejoMGF_ProdutoMGF" Member="ZonaManejoMGF" ThisKey="IDZonaManejoMGF" OtherKey="objID" Type="ZonaManejoMGF" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projeto" Member="Projeto">
+    <Type Name="Projeto">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDProprietario" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ciclo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="condicao" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="tecnologia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="titulo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="parametro" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Projeto_InsumoPlanejamento" Member="InsumoPlanejamento" ThisKey="objID" OtherKey="IDProjeto" Type="InsumoPlanejamento" />
+      <Association Name="Projeto_PlanVariedade" Member="PlanVariedade" ThisKey="objID" OtherKey="IDProjeto" Type="PlanVariedade" />
+      <Association Name="Projeto_ProjetoArea" Member="ProjetoArea" ThisKey="objID" OtherKey="IDProjeto" Type="ProjetoArea" />
+      <Association Name="Cultura_Projeto" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Proprietario_Projeto" Member="Proprietario" ThisKey="IDProprietario" OtherKey="objID" Type="Proprietario" IsForeignKey="true" />
+      <Association Name="Safra_Projeto" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProjetoArea" Member="ProjetoArea">
+    <Type Name="ProjetoArea">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDProjeto" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ordemPlantio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="prodEstimada" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="manejo" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="ProjetoArea_ParametroPlanArea" Member="ParametroPlanArea" ThisKey="objID" OtherKey="IDProjetoArea" Type="ParametroPlanArea" />
+      <Association Name="Area_ProjetoArea" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Projeto_ProjetoArea" Member="Projeto" ThisKey="IDProjeto" OtherKey="objID" Type="Projeto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Proposta" Member="Proposta">
+    <Type Name="Proposta">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDProprietario" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDAliado" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="analise" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="observacao" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="num" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="desconto" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="propriedades" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="proposta" Member="proposta1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Proposta_AreaServico" Member="AreaServico" ThisKey="objID" OtherKey="IDProposta" Type="AreaServico" />
+      <Association Name="Proposta_Parcelamento" Member="Parcelamento" ThisKey="objID" OtherKey="IDProposta" Type="Parcelamento" />
+      <Association Name="Proprietario_Proposta" Member="Proprietario" ThisKey="IDProprietario" OtherKey="objID" Type="Proprietario" IsForeignKey="true" />
+      <Association Name="Usuario_Proposta" Member="Usuario" ThisKey="IDAliado" OtherKey="objID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PropriedadeRural" Member="PropriedadeRural">
+    <Type Name="PropriedadeRural">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDProprietario" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDRegiao" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="endereco" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="cidade" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="estado" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="fone" Type="System.String" DbType="Char(14)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="Char(14)" CanBeNull="true" />
+      <Column Name="distancia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="areaTotal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="areaIrrigada" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="areaPlantada" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="infoAdicionais" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="imgMap" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="imgMGF" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="orbita" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PropriedadeRural_Arquivo" Member="Arquivo" ThisKey="objID" OtherKey="objID" Type="Arquivo" Cardinality="One" />
+      <Association Name="PropriedadeRural_ControleAlteracaoParametro" Member="ControleAlteracaoParametro" ThisKey="objID" OtherKey="IDPropriedadeRural" Type="ControleAlteracaoParametro" />
+      <Association Name="PropriedadeRural_EstoquePlanejamento" Member="EstoquePlanejamento" ThisKey="objID" OtherKey="IDPropriedadeRural" Type="EstoquePlanejamento" />
+      <Association Name="PropriedadeRural_ParametroPropriedade" Member="ParametroPropriedade" ThisKey="objID" OtherKey="IDPropriedade" Type="ParametroPropriedade" />
+      <Association Name="PropriedadeRural_Shape" Member="Shape" ThisKey="objID" OtherKey="IDPropriedadeRural" Type="Shape" />
+      <Association Name="PropriedadeRural_ShapeMGF" Member="ShapeMGF" ThisKey="objID" OtherKey="IDPropriedadeRural" Type="ShapeMGF" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Proprietario" Member="Proprietario">
+    <Type Name="Proprietario">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="cnpj" Type="System.String" DbType="Char(18)" CanBeNull="true" />
+      <Column Name="ie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="cpf" Type="System.String" DbType="Char(14)" CanBeNull="true" />
+      <Column Name="rg" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="endereco" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="cidade" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="uf" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="cep" Type="System.String" DbType="Char(9)" CanBeNull="true" />
+      <Column Name="fone" Type="System.String" DbType="Char(14)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="site" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="infoAdicionais" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ativo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="representante" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="cpfRepresentante" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Column Name="telefoneRepresentante" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Association Name="Proprietario_Acesso" Member="Acesso" ThisKey="objID" OtherKey="IDProprietario" Type="Acesso" />
+      <Association Name="Proprietario_AreaSafra" Member="AreaSafra" ThisKey="objID" OtherKey="IDProprietarioFatura" Type="AreaSafra" />
+      <Association Name="Proprietario_Arquivo" Member="Arquivo" ThisKey="objID" OtherKey="IDCliente" Type="Arquivo" />
+      <Association Name="Proprietario_EnvioAmostra" Member="EnvioAmostra" ThisKey="objID" OtherKey="IDProprietario" Type="EnvioAmostra" />
+      <Association Name="Proprietario_EnvioAmostra1" Member="EnvioAmostra1" ThisKey="objID" OtherKey="IDProprietarioFatura" Type="EnvioAmostra" />
+      <Association Name="Proprietario_Projeto" Member="Projeto" ThisKey="objID" OtherKey="IDProprietario" Type="Projeto" />
+      <Association Name="Proprietario_Proposta" Member="Proposta" ThisKey="objID" OtherKey="IDProprietario" Type="Proposta" />
+      <Association Name="Proprietario_ProprietarioFornecedor" Member="ProprietarioFornecedor" ThisKey="objID" OtherKey="IDProprietario" Type="ProprietarioFornecedor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProprietarioFornecedor" Member="ProprietarioFornecedor">
+    <Type Name="ProprietarioFornecedor">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDProprietario" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDFornecedor" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Association Name="Fornecedor_ProprietarioFornecedor" Member="Fornecedor" ThisKey="IDFornecedor" OtherKey="objID" Type="Fornecedor" IsForeignKey="true" />
+      <Association Name="Proprietario_ProprietarioFornecedor" Member="Proprietario" ThisKey="IDProprietario" OtherKey="objID" Type="Proprietario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RecomendacaoFoliar" Member="RecomendacaoFoliar">
+    <Type Name="RecomendacaoFoliar">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="codigo" Type="System.String" DbType="Char(26) NOT NULL" CanBeNull="false" />
+      <Column Name="descritivo" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="elemento" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="excecao" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Cultura_RecomendacaoFoliar" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Regiao" Member="Regiao">
+    <Type Name="Regiao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Regiao_ProdutividadeVariedade" Member="ProdutividadeVariedade" ThisKey="objID" OtherKey="IDRegiao" Type="ProdutividadeVariedade" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Resteva" Member="Resteva">
+    <Type Name="Resteva">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDLaboratorio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="n" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="p2o5" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="s" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ca" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mg" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="b" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="co" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="media" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="k2o" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="k" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="p" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Cultura_Resteva" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Laboratorio_Resteva" Member="Laboratorio" ThisKey="IDLaboratorio" OtherKey="objID" Type="Laboratorio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RestevaColetada" Member="RestevaColetada">
+    <Type Name="RestevaColetada">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDGrid" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDLaboratorio" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="Condicao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Umidade" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Situacao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Peso1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Peso2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Peso3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PesoValidado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Desconto" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Enviado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumeroLab" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Vinculo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TeorN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorP" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorK" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorS" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorCa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorMg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorB" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorZn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorMn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorMo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorCo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorCu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeorFe" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercP" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercK" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercS" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercCa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercMg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercB" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercZn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercMn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercMo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercCo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercCu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercFe" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantP" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantK" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantS" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantCa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantMg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantB" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantZn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantMn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantMo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantCo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantCu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QuantFe" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Area_RestevaColetada" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="Cultura_RestevaColetada" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="Grid_RestevaColetada" Member="Grid" ThisKey="IDGrid" OtherKey="objID" Type="Grid" IsForeignKey="true" />
+      <Association Name="Laboratorio_RestevaColetada" Member="Laboratorio" ThisKey="IDLaboratorio" OtherKey="objID" Type="Laboratorio" IsForeignKey="true" />
+      <Association Name="Safra_RestevaColetada" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RotacaoCultura" Member="RotacaoCultura">
+    <Type Name="RotacaoCultura">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAreaSafraMGF" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ordem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ano" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opcao" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="epoca" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="RotacaoCultura_SugestaoRotacao" Member="SugestaoRotacao" ThisKey="objID" OtherKey="IDRotacaoCultura" Type="SugestaoRotacao" />
+      <Association Name="AreaSafraMGF_RotacaoCultura" Member="AreaSafraMGF" ThisKey="IDAreaSafraMGF" OtherKey="objID" Type="AreaSafraMGF" IsForeignKey="true" />
+      <Association Name="Cultura_RotacaoCultura" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Safra" Member="Safra">
+    <Type Name="Safra">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="anoInicial" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="anoFinal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Safra_AmostraLaboratorio" Member="AmostraLaboratorio" ThisKey="objID" OtherKey="IDSafra" Type="AmostraLaboratorio" />
+      <Association Name="Safra_AnaliseFoliar" Member="AnaliseFoliar" ThisKey="objID" OtherKey="IDSafra" Type="AnaliseFoliar" />
+      <Association Name="Safra_AnaliseSolo" Member="AnaliseSolo" ThisKey="objID" OtherKey="IDSafra" Type="AnaliseSolo" />
+      <Association Name="Safra_AreaSafra" Member="AreaSafra" ThisKey="objID" OtherKey="IDSafra" Type="AreaSafra" />
+      <Association Name="Safra_AreaSafraMGF" Member="AreaSafraMGF" ThisKey="objID" OtherKey="IDSafra" Type="AreaSafraMGF" />
+      <Association Name="Safra_AreaServico" Member="AreaServico" ThisKey="objID" OtherKey="IDSafra" Type="AreaServico" />
+      <Association Name="Safra_CicloProducao" Member="CicloProducao" ThisKey="objID" OtherKey="IDSafra" Type="CicloProducao" />
+      <Association Name="Safra_ControleAlteracao" Member="ControleAlteracao" ThisKey="objID" OtherKey="IDSafra" Type="ControleAlteracao" />
+      <Association Name="Safra_ControleAlteracaoParametro" Member="ControleAlteracaoParametro" ThisKey="objID" OtherKey="IDSafra" Type="ControleAlteracaoParametro" />
+      <Association Name="Safra_Corretivo" Member="Corretivo" ThisKey="objID" OtherKey="IDSafra" Type="Corretivo" />
+      <Association Name="Safra_Cotacao" Member="Cotacao" ThisKey="objID" OtherKey="IDSafra" Type="Cotacao" />
+      <Association Name="Safra_EstoquePlanejamento" Member="EstoquePlanejamento" ThisKey="objID" OtherKey="IDSafra" Type="EstoquePlanejamento" />
+      <Association Name="Safra_Gesso" Member="Gesso" ThisKey="objID" OtherKey="IDSafra" Type="Gesso" />
+      <Association Name="Safra_Imagem" Member="Imagem" ThisKey="objID" OtherKey="IDSafra" Type="Imagem" />
+      <Association Name="Safra_ImagemMGF" Member="ImagemMGF" ThisKey="objID" OtherKey="IDSafra" Type="ImagemMGF" />
+      <Association Name="Safra_ObjetivoArea" Member="ObjetivoArea" ThisKey="objID" OtherKey="IDSafra" Type="ObjetivoArea" />
+      <Association Name="Safra_ParametroArea" Member="ParametroArea" ThisKey="objID" OtherKey="IDSafra" Type="ParametroArea" />
+      <Association Name="Safra_ParametroPropriedade" Member="ParametroPropriedade" ThisKey="objID" OtherKey="IDSafra" Type="ParametroPropriedade" />
+      <Association Name="Safra_ParametroRecomendacao" Member="ParametroRecomendacao" ThisKey="objID" OtherKey="IDSafra" Type="ParametroRecomendacao" />
+      <Association Name="Safra_Plantio" Member="Plantio" ThisKey="objID" OtherKey="IDSafra" Type="Plantio" />
+      <Association Name="Safra_Projeto" Member="Projeto" ThisKey="objID" OtherKey="IDSafra" Type="Projeto" />
+      <Association Name="Safra_RestevaColetada" Member="RestevaColetada" ThisKey="objID" OtherKey="IDSafra" Type="RestevaColetada" />
+      <Association Name="Safra_sequenciaImportacao" Member="sequenciaImportacao" ThisKey="objID" OtherKey="IDSafra" Type="sequenciaImportacao" />
+      <Association Name="Safra_Shape" Member="Shape" ThisKey="objID" OtherKey="IDSafra" Type="Shape" />
+      <Association Name="Safra_ShapeMGF" Member="ShapeMGF" ThisKey="objID" OtherKey="IDSafra" Type="ShapeMGF" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sequenciaImportacao" Member="sequenciaImportacao">
+    <Type Name="sequenciaImportacao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nomeLaboratorio" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="grid" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="area" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="numeroPonto" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="tipoSolo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="compactacao" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="phcacl2" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="mo" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="pMehl" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="pRes" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="k2o" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="s" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="ca" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="mg" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="al" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="ctc" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="argila" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="b" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="zn" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="fe" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="mn" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="cu" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="co" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="momicro" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="umphcacl2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ummo" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umpmehl" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umpres" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="umk2o" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ums" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umca" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ummg" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umal" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umctc" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umargila" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umb" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umzn" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umfe" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ummn" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umcu" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="umco" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ummomicro" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Association Name="Safra_sequenciaImportacao" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Servico" Member="Servico">
+    <Type Name="Servico">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Servico_AreaServico" Member="AreaServico" ThisKey="objID" OtherKey="IDServico" Type="AreaServico" />
+      <Association Name="Servico_Atividade" Member="Atividade" ThisKey="objID" OtherKey="IDServico" Type="Atividade" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Shape" Member="Shape">
+    <Type Name="Shape">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPropriedadeRural" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="zona" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tipo" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="shp" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="dbf" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ponto0020" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ponto2040" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="amostrasimples" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Area_Shape" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="PropriedadeRural_Shape" Member="PropriedadeRural" ThisKey="IDPropriedadeRural" OtherKey="objID" Type="PropriedadeRural" IsForeignKey="true" />
+      <Association Name="Safra_Shape" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShapeMGF" Member="ShapeMGF">
+    <Type Name="ShapeMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPropriedadeRural" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDArea" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDSafra" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="shp" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="dbf" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="numServico" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Area_ShapeMGF" Member="Area" ThisKey="IDArea" OtherKey="objID" Type="Area" IsForeignKey="true" />
+      <Association Name="PropriedadeRural_ShapeMGF" Member="PropriedadeRural" ThisKey="IDPropriedadeRural" OtherKey="objID" Type="PropriedadeRural" IsForeignKey="true" />
+      <Association Name="Safra_ShapeMGF" Member="Safra" ThisKey="IDSafra" OtherKey="objID" Type="Safra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SugestaoRotacao" Member="SugestaoRotacao">
+    <Type Name="SugestaoRotacao">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDRotacaoCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDVariedadeCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ciclo" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="risco" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="potencialNormal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="potencialEstiagem" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="potencialSafrinha" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="RotacaoCultura_SugestaoRotacao" Member="RotacaoCultura" ThisKey="IDRotacaoCultura" OtherKey="objID" Type="RotacaoCultura" IsForeignKey="true" />
+      <Association Name="VariedadeCultura_SugestaoRotacao" Member="VariedadeCultura" ThisKey="IDVariedadeCultura" OtherKey="objID" Type="VariedadeCultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TeorFoliar" Member="TeorFoliar">
+    <Type Name="TeorFoliar">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAnaliseFoliar" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="numero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="N" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="P" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="K" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="S" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Ca" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Mg" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="B" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Zn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Fe" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Cu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Mn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Mo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="AnaliseFoliar_TeorFoliar" Member="AnaliseFoliar" ThisKey="IDAnaliseFoliar" OtherKey="objID" Type="AnaliseFoliar" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoAmostra" Member="TipoAmostra">
+    <Type Name="TipoAmostra">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="TipoAmostra_AmostraLaboratorio" Member="AmostraLaboratorio" ThisKey="objID" OtherKey="IDTipoAmostra" Type="AmostraLaboratorio" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoArea" Member="TipoArea">
+    <Type Name="TipoArea">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="TipoArea_Area" Member="Area" ThisKey="objID" OtherKey="IDTipoArea" Type="Area" />
+      <Association Name="TipoArea_Grid" Member="Grid" ThisKey="objID" OtherKey="IDTipoArea" Type="Grid" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoSolo" Member="TipoSolo">
+    <Type Name="TipoSolo">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="abreviacao" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="num" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="codColorKML" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="codColorHexa" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="TipoSolo_AnaliseSolo" Member="AnaliseSolo" ThisKey="objID" OtherKey="IDTipoSolo" Type="AnaliseSolo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoUsuario" Member="TipoUsuario">
+    <Type Name="TipoUsuario">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="TipoUsuario_Usuario" Member="Usuario" ThisKey="objID" OtherKey="IDTipoUsuario" Type="Usuario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnidadeLaboratorio" Member="UnidadeLaboratorio">
+    <Type Name="UnidadeLaboratorio">
+      <Column Name="objID" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDLaboratorio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="n" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="p" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="k" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="s" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ca" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mg" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="b" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="co" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fe" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Laboratorio_UnidadeLaboratorio" Member="Laboratorio" ThisKey="IDLaboratorio" OtherKey="objID" Type="Laboratorio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnidadeMedida" Member="UnidadeMedida">
+    <Type Name="UnidadeMedida">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="peso" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="UnidadeMedida_Cultura" Member="Cultura" ThisKey="objID" OtherKey="IDUnidadeMedida" Type="Cultura" />
+      <Association Name="UnidadeMedida_EstoquePlanejamento" Member="EstoquePlanejamento" ThisKey="objID" OtherKey="IDUnidadeMedida" Type="EstoquePlanejamento" />
+      <Association Name="UnidadeMedida_PlanVariedade" Member="PlanVariedade" ThisKey="objID" OtherKey="IDUnidadeMedida" Type="PlanVariedade" />
+      <Association Name="UnidadeMedida_ProdutividadeVariedade" Member="ProdutividadeVariedade" ThisKey="objID" OtherKey="IDUnidadeMedida" Type="ProdutividadeVariedade" />
+      <Association Name="UnidadeMedida_ProdutoMGF" Member="ProdutoMGF" ThisKey="objID" OtherKey="IDUnidadeMedida" Type="ProdutoMGF" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnidadeMGF" Member="UnidadeMGF">
+    <Type Name="UnidadeMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="unidade" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fator" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="UnidadeMGF_ImagemItemMGF" Member="ImagemItemMGF" ThisKey="objID" OtherKey="IDUnidadeMGF" Type="ImagemItemMGF" />
+      <Association Name="UnidadeMGF_PatogenoLabUnd" Member="PatogenoLabUnd" ThisKey="objID" OtherKey="IDUnidadeMGFColonia" Type="PatogenoLabUnd" />
+      <Association Name="UnidadeMGF_PatogenoLabUnd1" Member="PatogenoLabUnd1" ThisKey="objID" OtherKey="IDUnidadeMGFRaiz" Type="PatogenoLabUnd" />
+      <Association Name="UnidadeMGF_PatogenoLabUnd2" Member="PatogenoLabUnd2" ThisKey="objID" OtherKey="IDUnidadeMGFSolo" Type="PatogenoLabUnd" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsoProduto" Member="UsoProduto">
+    <Type Name="UsoProduto">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDProduto" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="acao" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="alvo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="doseBaixa" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="doseMedia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="doseAlta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Cultura_UsoProduto" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+      <Association Name="ProdutoMGF_UsoProduto" Member="ProdutoMGF" ThisKey="IDProduto" OtherKey="objID" Type="ProdutoMGF" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuario">
+    <Type Name="Usuario">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="ie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="cpf" Type="System.String" DbType="Char(14) NOT NULL" CanBeNull="false" />
+      <Column Name="rg" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="endereco" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="cidade" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cep" Type="System.String" DbType="Char(9)" CanBeNull="true" />
+      <Column Name="fone" Type="System.String" DbType="Char(13)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="Char(13)" CanBeNull="true" />
+      <Column Name="site" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="infoAdicionais" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="uf" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="crea" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="profissao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IDTipoUsuario" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Usuario_Acesso" Member="Acesso" ThisKey="objID" OtherKey="IDUsuario" Type="Acesso" />
+      <Association Name="Usuario_AnaliseSolo" Member="AnaliseSolo" ThisKey="objID" OtherKey="IDUsuario" Type="AnaliseSolo" />
+      <Association Name="Usuario_Arquivo" Member="Arquivo" ThisKey="objID" OtherKey="IDUsuario" Type="Arquivo" />
+      <Association Name="Usuario_AspNetUsers" Member="AspNetUsers" ThisKey="objID" OtherKey="IDUsuario" Type="AspNetUsers" />
+      <Association Name="Usuario_CicloProducao" Member="CicloProducao" ThisKey="objID" OtherKey="IDUsuario" Type="CicloProducao" />
+      <Association Name="Usuario_ControleAlteracaoParametro" Member="ControleAlteracaoParametro" ThisKey="objID" OtherKey="IDUsuario" Type="ControleAlteracaoParametro" />
+      <Association Name="Usuario_Corretivo" Member="Corretivo" ThisKey="objID" OtherKey="IDUsuario" Type="Corretivo" />
+      <Association Name="Usuario_EnvioAmostra" Member="EnvioAmostra" ThisKey="objID" OtherKey="IDUsuario" Type="EnvioAmostra" />
+      <Association Name="Usuario_Fertilizante" Member="Fertilizante" ThisKey="objID" OtherKey="IDUsuario" Type="Fertilizante" />
+      <Association Name="Usuario_Gesso" Member="Gesso" ThisKey="objID" OtherKey="IDUsuario" Type="Gesso" />
+      <Association Name="Usuario_Grid" Member="Grid" ThisKey="objID" OtherKey="IDUsuario" Type="Grid" />
+      <Association Name="Usuario_ObjetivoRecomendacao" Member="ObjetivoRecomendacao" ThisKey="objID" OtherKey="IDUsuarioAlteracao" Type="ObjetivoRecomendacao" />
+      <Association Name="Usuario_ObjetivoRecomendacao1" Member="ObjetivoRecomendacao1" ThisKey="objID" OtherKey="IDUsuarioCriacao" Type="ObjetivoRecomendacao" />
+      <Association Name="Usuario_Proposta" Member="Proposta" ThisKey="objID" OtherKey="IDAliado" Type="Proposta" />
+      <Association Name="TipoUsuario_Usuario" Member="TipoUsuario" ThisKey="IDTipoUsuario" OtherKey="objID" Type="TipoUsuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ValidacaoPlantio" Member="ValidacaoPlantio">
+    <Type Name="ValidacaoPlantio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPlantio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ts" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="argila" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="clima" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="acamamento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="variacaoMais" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="variacaoMenos" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Plantio_ValidacaoPlantio" Member="Plantio" ThisKey="IDPlantio" OtherKey="objID" Type="Plantio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VariedadeAnalise" Member="VariedadeAnalise">
+    <Type Name="VariedadeAnalise">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAnalisePlantio" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="IDVariedadePlantio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDZMPlantio" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Association Name="AnalisePlantio_VariedadeAnalise" Member="AnalisePlantio" ThisKey="IDAnalisePlantio" OtherKey="objID" Type="AnalisePlantio" IsForeignKey="true" />
+      <Association Name="VariedadePlantio_VariedadeAnalise" Member="VariedadePlantio" ThisKey="IDVariedadePlantio" OtherKey="objID" Type="VariedadePlantio" IsForeignKey="true" />
+      <Association Name="ZmPlantio_VariedadeAnalise" Member="ZmPlantio" ThisKey="IDZMPlantio" OtherKey="objID" Type="ZmPlantio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VariedadeCultura" Member="VariedadeCultura">
+    <Type Name="VariedadeCultura">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ciclo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDCultura" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="empresaDetentora" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="exigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="acamamento" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="VariedadeCultura_CicloProducao" Member="CicloProducao" ThisKey="objID" OtherKey="IDVariedadeCultura" Type="CicloProducao" />
+      <Association Name="VariedadeCultura_PatogenoVariedade" Member="PatogenoVariedade" ThisKey="objID" OtherKey="IDVariedadeCultura" Type="PatogenoVariedade" />
+      <Association Name="VariedadeCultura_PlanVariedade" Member="PlanVariedade" ThisKey="objID" OtherKey="IDVariedadeCultura" Type="PlanVariedade" />
+      <Association Name="VariedadeCultura_ProdutividadeVariedade" Member="ProdutividadeVariedade" ThisKey="objID" OtherKey="IDVariedadeCultura" Type="ProdutividadeVariedade" />
+      <Association Name="VariedadeCultura_SugestaoRotacao" Member="SugestaoRotacao" ThisKey="objID" OtherKey="IDVariedadeCultura" Type="SugestaoRotacao" />
+      <Association Name="VariedadeCultura_VariedadePlantio" Member="VariedadePlantio" ThisKey="objID" OtherKey="IDVariedade" Type="VariedadePlantio" />
+      <Association Name="Cultura_VariedadeCultura" Member="Cultura" ThisKey="IDCultura" OtherKey="objID" Type="Cultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VariedadePlantio" Member="VariedadePlantio">
+    <Type Name="VariedadePlantio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPlantio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="IDVariedade" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="exigencia" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ha" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="populacao" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="pms" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="pg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="vigor" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="acamamento" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="VariedadePlantio_VariedadeAnalise" Member="VariedadeAnalise" ThisKey="objID" OtherKey="IDVariedadePlantio" Type="VariedadeAnalise" />
+      <Association Name="Plantio_VariedadePlantio" Member="Plantio" ThisKey="IDPlantio" OtherKey="objID" Type="Plantio" IsForeignKey="true" />
+      <Association Name="VariedadeCultura_VariedadePlantio" Member="VariedadeCultura" ThisKey="IDVariedade" OtherKey="objID" Type="VariedadeCultura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ZmPlantio" Member="ZmPlantio">
+    <Type Name="ZmPlantio">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPlantio" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="numero" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ha" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="tipoSolo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="ZmPlantio_AnalisePlantio" Member="AnalisePlantio" ThisKey="objID" OtherKey="IDZonaPlantio" Type="AnalisePlantio" />
+      <Association Name="ZmPlantio_CorretivoPlantio" Member="CorretivoPlantio" ThisKey="objID" OtherKey="IDZmPlantio" Type="CorretivoPlantio" />
+      <Association Name="ZmPlantio_VariedadeAnalise" Member="VariedadeAnalise" ThisKey="objID" OtherKey="IDZMPlantio" Type="VariedadeAnalise" />
+      <Association Name="Plantio_ZmPlantio" Member="Plantio" ThisKey="IDPlantio" OtherKey="objID" Type="Plantio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ZonaManejoMGF" Member="ZonaManejoMGF">
+    <Type Name="ZonaManejoMGF">
+      <Column Name="objID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDAreaSafraMGF" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="tamanho" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="ZonaManejoMGF_AmostraMGF" Member="AmostraMGF" ThisKey="objID" OtherKey="IDZonaManejoMGF" Type="AmostraMGF" />
+      <Association Name="ZonaManejoMGF_ProdutoMGF" Member="ProdutoMGF" ThisKey="objID" OtherKey="IDZonaManejoMGF" Type="ProdutoMGF" />
+      <Association Name="AreaSafraMGF_ZonaManejoMGF" Member="AreaSafraMGF" ThisKey="IDAreaSafraMGF" OtherKey="objID" Type="AreaSafraMGF" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

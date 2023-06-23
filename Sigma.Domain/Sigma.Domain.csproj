@@ -1,0 +1,999 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C1CED4F-8878-4056-9D1E-1617C922F84B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sigma.Domain</RootNamespace>
+    <AssemblyName>Sigma.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Zip, Version=22.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Zip.22.3.0\lib\net40\Aspose.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.16.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.16.0\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.10.3.5\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoAPI, Version=1.7.5.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeoAPI.Core.1.7.5\lib\net45\GeoAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoAPI.CoordinateSystems, Version=1.7.5.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeoAPI.CoordinateSystems.1.7.5\lib\net45\GeoAPI.CoordinateSystems.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Spatial, Version=7.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Spatial.7.11.0\lib\net45\Microsoft.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.10.50.1600.1\lib\Net20\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="NetTopologySuite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetTopologySuite.2.4.0\lib\netstandard2.0\NetTopologySuite.dll</HintPath>
+    </Reference>
+    <Reference Include="NetTopologySuite.Features, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetTopologySuite.Features.2.1.0\lib\netstandard2.0\NetTopologySuite.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="ProjNET, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a1f5bdcd9c6f5740, processorArchitecture=MSIL">
+      <HintPath>..\packages\ProjNET.2.0.0\lib\netstandard2.0\ProjNET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.4.5.1\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.5.1\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TatukGIS_DK10_NET">
+      <HintPath>..\TatukGIS_DK10_NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auxiliar\AuxShape.cs" />
+    <Compile Include="Auxiliar\BNGFacade.cs" />
+    <Compile Include="Auxiliar\ConversorCoordenadas.cs" />
+    <Compile Include="Auxiliar\ConversorCoordenadasShape.cs" />
+    <Compile Include="Auxiliar\ConversorCordenadas.cs" />
+    <Compile Include="Auxiliar\GerenciadorDeFields.cs" />
+    <Compile Include="Auxiliar\SaveExtFile.cs" />
+    <Compile Include="Calculate\cCorretivo.cs" />
+    <Compile Include="Entities\Adubo.cs" />
+    <Compile Include="Entities\Amostra.cs" />
+    <Compile Include="Entities\AmostraFoliar.cs" />
+    <Compile Include="Entities\AnaliseSolo.cs" />
+    <Compile Include="Entities\Area.cs" />
+    <Compile Include="Entities\AreaServico.cs" />
+    <Compile Include="Entities\CicloProducao.cs" />
+    <Compile Include="Entities\Corretivo.cs" />
+    <Compile Include="Entities\Cultura.cs" />
+    <Compile Include="Entities\Empresa.cs" />
+    <Compile Include="Entities\EstagioCultura.cs" />
+    <Compile Include="Entities\ExtracaoCultura.cs" />
+    <Compile Include="Entities\FaixaTeor.cs" />
+    <Compile Include="Entities\Fertilizante.cs" />
+    <Compile Include="Entities\Field.cs" />
+    <Compile Include="Entities\FormulacaoAdubo.cs" />
+    <Compile Include="Entities\Fornecedor.cs" />
+    <Compile Include="Entities\Grid.cs" />
+    <Compile Include="Entities\Imagem.cs" />
+    <Compile Include="Entities\ImagemSatelite.cs" />
+    <Compile Include="Entities\ImagemSateliteRecortada.cs" />
+    <Compile Include="Entities\ItensAnaliseLaboratorio.cs" />
+    <Compile Include="Entities\Laboratorio.cs" />
+    <Compile Include="Entities\NivelSolo.cs" />
+    <Compile Include="Entities\ParametroArea.cs" />
+    <Compile Include="Entities\ParametroPropriedade.cs" />
+    <Compile Include="Entities\ParametroRecomendacao.cs" />
+    <Compile Include="Entities\PartePlanta.cs" />
+    <Compile Include="Entities\Problema.cs" />
+    <Compile Include="Entities\ProdutividadeVariedade.cs" />
+    <Compile Include="Entities\Produto.cs" />
+    <Compile Include="Entities\ProdutoSimulador.cs" />
+    <Compile Include="Entities\Propriedade.cs" />
+    <Compile Include="Entities\Proprietario.cs" />
+    <Compile Include="Entities\ProprietarioFornecedor.cs" />
+    <Compile Include="Entities\RecomendacaoFoliar.cs" />
+    <Compile Include="Entities\Regiao.cs" />
+    <Compile Include="Entities\Resteva.cs" />
+    <Compile Include="Entities\Safra.cs" />
+    <Compile Include="Entities\SaveTemporaryImgByte.cs" />
+    <Compile Include="Entities\SequenciaImportacao.cs" />
+    <Compile Include="Entities\Servico.cs" />
+    <Compile Include="Entities\Simulacao.cs" />
+    <Compile Include="Entities\TeorFoliar.cs" />
+    <Compile Include="Entities\TeorSolo.cs" />
+    <Compile Include="Entities\TipoAmostra.cs" />
+    <Compile Include="Entities\TipoSolo.cs" />
+    <Compile Include="Entities\UnidadeDeLaboratorio.cs" />
+    <Compile Include="Entities\UnidadeMedida.cs" />
+    <Compile Include="Entities\UsoProduto.cs" />
+    <Compile Include="Entities\VariedadeCultura.cs" />
+    <Compile Include="IdentityEntities\Claims.cs" />
+    <Compile Include="IdentityEntities\Roles.cs" />
+    <Compile Include="IdentityEntities\UserClaims.cs" />
+    <Compile Include="IdentityEntities\UserLogin.cs" />
+    <Compile Include="IdentityEntities\UserRoles.cs" />
+    <Compile Include="IdentityEntities\Usuario.cs" />
+    <Compile Include="IdentityEntities\UsuarioAtivo.cs" />
+    <Compile Include="Interfaces\ISelfValidation.cs" />
+    <Compile Include="Interfaces\Repository\IAduboRepository.cs" />
+    <Compile Include="Interfaces\Repository\IAmostraFoliarRepository.cs" />
+    <Compile Include="Interfaces\Repository\IAmostraRepository.cs" />
+    <Compile Include="Interfaces\Repository\IAnaliseSoloRepository.cs" />
+    <Compile Include="Interfaces\Repository\IAreaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IAreaServicoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IArquivoAreaRepository.cs" />
+    <Compile Include="Interfaces\Repository\ICicloProducaoRepository.cs" />
+    <Compile Include="Interfaces\Repository\ICorretivoRepository.cs" />
+    <Compile Include="Interfaces\Repository\ICulturaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IEmpresaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IEstagioCulturaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IExtracaoCulturaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IFaixaTeorRepository.cs" />
+    <Compile Include="Interfaces\Repository\IFertilizanteRepository.cs" />
+    <Compile Include="Interfaces\Repository\IFormulacaoAduboRepository.cs" />
+    <Compile Include="Interfaces\Repository\IFornecedorRepository.cs" />
+    <Compile Include="Interfaces\Repository\IGeoConfigRepository.cs" />
+    <Compile Include="Interfaces\Repository\IGridRepository.cs" />
+    <Compile Include="Interfaces\Repository\IImagemRecorteRepository.cs" />
+    <Compile Include="Interfaces\Repository\IIMagemRepository.cs" />
+    <Compile Include="Interfaces\Repository\IimagemSateliteRepository.cs" />
+    <Compile Include="Interfaces\Repository\IItensAnalisesLaboratorioRepository.cs" />
+    <Compile Include="Interfaces\Repository\ILaboratorioRepository.cs" />
+    <Compile Include="Interfaces\Repository\INivelSolo.cs" />
+    <Compile Include="Interfaces\Repository\IParametroAreaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IParametroPropriedadeRepository.cs" />
+    <Compile Include="Interfaces\Repository\IParametroRecomendacaoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IPartePlantaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IProblemaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IProdutividadeVariedadeRepository.cs" />
+    <Compile Include="Interfaces\Repository\IProdutoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IProdutoSimuladorRepository.cs" />
+    <Compile Include="Interfaces\Repository\IPropriedadeRepository.cs" />
+    <Compile Include="Interfaces\Repository\IProprietarioFornecedorRepository.cs" />
+    <Compile Include="Interfaces\Repository\IProprietarioRepository.cs" />
+    <Compile Include="Interfaces\Repository\IRecomendacaoFoliarRepository.cs" />
+    <Compile Include="Interfaces\Repository\IRegiaoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IRestevaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IRolesRepository.cs" />
+    <Compile Include="Interfaces\Repository\ISafraRepository.cs" />
+    <Compile Include="Interfaces\Repository\ISaveTemporaryImgByteRepository.cs" />
+    <Compile Include="Interfaces\Repository\ISequenciaImportacaoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IServicoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IShapeRepository.cs" />
+    <Compile Include="Interfaces\Repository\ISimulacaoRepository.cs" />
+    <Compile Include="Interfaces\Repository\ITeorFoliarRepository.cs" />
+    <Compile Include="Interfaces\Repository\ITeorSoloRepository.cs" />
+    <Compile Include="Interfaces\Repository\ITipoAmostraRepository.cs" />
+    <Compile Include="Interfaces\Repository\ITipoSoloRepository.cs" />
+    <Compile Include="Interfaces\Repository\IUnidadeDeLaboratorioRepository.cs" />
+    <Compile Include="Interfaces\Repository\IUnidadeMedidaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IUsoProdutoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IUsuarioAtivoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IUsuarioRepository.cs" />
+    <Compile Include="Interfaces\Repository\IVariedadeCulturaRepository.cs" />
+    <Compile Include="Interfaces\Repository\_Base\IRepository.cs" />
+    <Compile Include="Interfaces\Service\IAduboService.cs" />
+    <Compile Include="Interfaces\Service\IAmostraFoliarService.cs" />
+    <Compile Include="Interfaces\Service\IAmostraService.cs" />
+    <Compile Include="Interfaces\Service\IAnaliseSoloService.cs" />
+    <Compile Include="Interfaces\Service\IAreaService.cs" />
+    <Compile Include="Interfaces\Service\IAreaServicoService.cs" />
+    <Compile Include="Interfaces\Service\IArquivoAreaService.cs" />
+    <Compile Include="Interfaces\Service\ICicloProducaoService.cs" />
+    <Compile Include="Interfaces\Service\ICorretivoService.cs" />
+    <Compile Include="Interfaces\Service\ICulturaService.cs" />
+    <Compile Include="Interfaces\Service\IEmpresaService.cs" />
+    <Compile Include="Interfaces\Service\IEstagioCulturaService.cs" />
+    <Compile Include="Interfaces\Service\IExtracaoCulturaService.cs" />
+    <Compile Include="Interfaces\Service\IFaixaTeorService.cs" />
+    <Compile Include="Interfaces\Service\IFertilizanteService.cs" />
+    <Compile Include="Interfaces\Service\IFormulacaoAduboService.cs" />
+    <Compile Include="Interfaces\Service\IFornecedorService.cs" />
+    <Compile Include="Interfaces\Service\IGeoConfigService.cs" />
+    <Compile Include="Interfaces\Service\IGridService.cs" />
+    <Compile Include="Interfaces\Service\IImagemRecorteService.cs" />
+    <Compile Include="Interfaces\Service\IimagemSateliteService.cs" />
+    <Compile Include="Interfaces\Service\IImagemService.cs" />
+    <Compile Include="Interfaces\Service\IItensAnaliseLaboratorioService.cs" />
+    <Compile Include="Interfaces\Service\ILaboratorioService.cs" />
+    <Compile Include="Interfaces\Service\INivelSoloService.cs" />
+    <Compile Include="Interfaces\Service\IParametroAreaService.cs" />
+    <Compile Include="Interfaces\Service\IParametroPropriedade.cs" />
+    <Compile Include="Interfaces\Service\IParametroRecomendacaoService.cs" />
+    <Compile Include="Interfaces\Service\IPartePlantaService.cs" />
+    <Compile Include="Interfaces\Service\IProblemaService.cs" />
+    <Compile Include="Interfaces\Service\IProdutividadeVariedadeService.cs" />
+    <Compile Include="Interfaces\Service\IProdutoService.cs" />
+    <Compile Include="Interfaces\Service\IProdutoSimuladorService.cs" />
+    <Compile Include="Interfaces\Service\IPropriedadeService.cs" />
+    <Compile Include="Interfaces\Service\IProprietarioFornecedorService.cs" />
+    <Compile Include="Interfaces\Service\IProprietarioService.cs" />
+    <Compile Include="Interfaces\Service\IRecomendacaoFoliarService.cs" />
+    <Compile Include="Interfaces\Service\IRegiaoService.cs" />
+    <Compile Include="Interfaces\Service\IRestevaService.cs" />
+    <Compile Include="Interfaces\Service\IRolesService.cs" />
+    <Compile Include="Interfaces\Service\ISafraService.cs" />
+    <Compile Include="Interfaces\Service\ISaveTemporaryImgByteService.cs" />
+    <Compile Include="Interfaces\Service\ISequenciaImportacaoService.cs" />
+    <Compile Include="Interfaces\Service\IServicoService.cs" />
+    <Compile Include="Interfaces\Service\IShapeService.cs" />
+    <Compile Include="Interfaces\Service\ISimulacaoService.cs" />
+    <Compile Include="Interfaces\Service\ITeorFoliarService.cs" />
+    <Compile Include="Interfaces\Service\ITeorSoloService.cs" />
+    <Compile Include="Interfaces\Service\ITipoAmostraService.cs" />
+    <Compile Include="Interfaces\Service\ITipoSoloService.cs" />
+    <Compile Include="Interfaces\Service\IUnidadeDeLaboratorioService.cs" />
+    <Compile Include="Interfaces\Service\IUnidadeMedidaService.cs" />
+    <Compile Include="Interfaces\Service\IUsoProdutoService.cs" />
+    <Compile Include="Interfaces\Service\IUsuarioAtivoService.cs" />
+    <Compile Include="Interfaces\Service\IUsuarioService.cs" />
+    <Compile Include="Interfaces\Service\IVariedadeCulturaService.cs" />
+    <Compile Include="Interfaces\Service\_Base\IService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AduboService.cs" />
+    <Compile Include="Services\AmostraFoliarService.cs" />
+    <Compile Include="Services\AmostraService.cs" />
+    <Compile Include="Services\AnaliseSoloService.cs" />
+    <Compile Include="Services\AreaService.cs" />
+    <Compile Include="Services\AreaServicoService.cs" />
+    <Compile Include="Services\ArquivoAreaService.cs" />
+    <Compile Include="Services\CicloProducaoService.cs" />
+    <Compile Include="Services\CorretivoService.cs" />
+    <Compile Include="Services\CulturaService.cs" />
+    <Compile Include="Services\EmpresaService.cs" />
+    <Compile Include="Services\EstagioCulturaService.cs" />
+    <Compile Include="Services\ExtracaoCulturaService.cs" />
+    <Compile Include="Services\FaixaTeorService.cs" />
+    <Compile Include="Services\FertilizanteService.cs" />
+    <Compile Include="Services\FormulacaoAduboService.cs" />
+    <Compile Include="Services\FornecedorService.cs" />
+    <Compile Include="Services\GeoConfigService.cs" />
+    <Compile Include="Services\GridService.cs" />
+    <Compile Include="Services\ImagemRecorteService.cs" />
+    <Compile Include="Services\ImagemSateliteService.cs" />
+    <Compile Include="Services\ImagemService.cs" />
+    <Compile Include="Services\ItensAnalisesLaboratorioService.cs" />
+    <Compile Include="Services\LaboratorioService.cs" />
+    <Compile Include="Services\NivelSoloService.cs" />
+    <Compile Include="Services\ParametroAreaService.cs" />
+    <Compile Include="Services\ParametroPropriedadeService.cs" />
+    <Compile Include="Services\ParametroRecomendacaoService.cs" />
+    <Compile Include="Services\PartePlantaService.cs" />
+    <Compile Include="Services\ProblemaService.cs" />
+    <Compile Include="Services\ProdutividadeVariedadeService.cs" />
+    <Compile Include="Services\ProdutoService.cs" />
+    <Compile Include="Services\ProdutoSimuladorService.cs" />
+    <Compile Include="Services\PropriedadeService.cs" />
+    <Compile Include="Services\ProprietarioFornecedorService.cs" />
+    <Compile Include="Services\ProprietarioService.cs" />
+    <Compile Include="Services\RecomendacaoFoliarService.cs" />
+    <Compile Include="Services\RegiaoService.cs" />
+    <Compile Include="Services\RestevaService.cs" />
+    <Compile Include="Services\RolesService.cs" />
+    <Compile Include="Services\SafraService.cs" />
+    <Compile Include="Services\SaveTemporaryImgByteService.cs" />
+    <Compile Include="Services\SequenciaImportacaoService.cs" />
+    <Compile Include="Services\ServicoService.cs" />
+    <Compile Include="Services\ShapeService.cs" />
+    <Compile Include="Services\SimulacaoService.cs" />
+    <Compile Include="Services\TeorFoliarService.cs" />
+    <Compile Include="Services\TeorSoloService.cs" />
+    <Compile Include="Services\TipoAmostraService.cs" />
+    <Compile Include="Services\TipoSoloService.cs" />
+    <Compile Include="Services\UnidadeDeLaboratorioService.cs" />
+    <Compile Include="Services\UnidadeMedidaService.cs" />
+    <Compile Include="Services\UsoProdutoService.cs" />
+    <Compile Include="Services\UsuarioAtivoService.cs" />
+    <Compile Include="Services\UsuarioService.cs" />
+    <Compile Include="Services\VariedadeCulturaService.cs" />
+    <Compile Include="Services\_Base\Service.cs" />
+    <Compile Include="Validation\CLS\AduboValidation.cs" />
+    <Compile Include="Validation\CLS\AmostraFoliarValidation.cs" />
+    <Compile Include="Validation\CLS\AmostraValidation.cs" />
+    <Compile Include="Validation\CLS\AnaliseSoloValidation.cs" />
+    <Compile Include="Validation\CLS\AreaServicoValidation.cs" />
+    <Compile Include="Validation\CLS\AreaValidation.cs" />
+    <Compile Include="Validation\CLS\CicloProducaoValidation.cs" />
+    <Compile Include="Validation\CLS\CorretivoValidation.cs" />
+    <Compile Include="Validation\CLS\CulturaValidation.cs" />
+    <Compile Include="Validation\CLS\EmpresaValidation.cs" />
+    <Compile Include="Validation\CLS\EstagioCulturaValidation.cs" />
+    <Compile Include="Validation\CLS\ExtracaoCulturaValidation.cs" />
+    <Compile Include="Validation\CLS\FaixaTeorValidation.cs" />
+    <Compile Include="Validation\CLS\FertilizanteValidation.cs" />
+    <Compile Include="Validation\CLS\FormulacaoAduboValidation.cs" />
+    <Compile Include="Validation\CLS\FornecedorValidation.cs" />
+    <Compile Include="Validation\CLS\GridValidation.cs" />
+    <Compile Include="Validation\CLS\ImagemSateliteRecortadaValidation.cs" />
+    <Compile Include="Validation\CLS\ImagemSateliteValidation.cs" />
+    <Compile Include="Validation\CLS\ImagemValidation.cs" />
+    <Compile Include="Validation\CLS\LaboratorioValidation.cs" />
+    <Compile Include="Validation\CLS\NivelSoloValidation.cs" />
+    <Compile Include="Validation\CLS\ParametroAreaValidation.cs" />
+    <Compile Include="Validation\CLS\ParametroPropriedadeValidation.cs" />
+    <Compile Include="Validation\CLS\ParametroRecomendacaoValidation.cs" />
+    <Compile Include="Validation\CLS\PartePlantaValidation.cs" />
+    <Compile Include="Validation\CLS\ProblemaValidation.cs" />
+    <Compile Include="Validation\CLS\ProdutividadeVariedadeValidation.cs" />
+    <Compile Include="Validation\CLS\ProdutoSimuldaroValidation.cs" />
+    <Compile Include="Validation\CLS\PropriedadeValidation.cs" />
+    <Compile Include="Validation\CLS\ProprietarioFornecedorValidation.cs" />
+    <Compile Include="Validation\CLS\ProprietarioValidation.cs" />
+    <Compile Include="Validation\CLS\RecomendacaoFoliarValidation.cs" />
+    <Compile Include="Validation\CLS\RegiaoValidation.cs" />
+    <Compile Include="Validation\CLS\RestevaValidation.cs" />
+    <Compile Include="Validation\CLS\SafraValidation.cs" />
+    <Compile Include="Validation\CLS\SaveTemporaryImgByteValidation.cs" />
+    <Compile Include="Validation\CLS\SequenciaImportacaoValidation.cs" />
+    <Compile Include="Validation\CLS\ServicoValidate.cs" />
+    <Compile Include="Validation\CLS\SimulacaoValidate.cs" />
+    <Compile Include="Validation\CLS\TeorFoliarValidation.cs" />
+    <Compile Include="Validation\CLS\TeorSoloValidation.cs" />
+    <Compile Include="Validation\CLS\TipoAmostraValidate.cs" />
+    <Compile Include="Validation\CLS\TipoSoloValidate.cs" />
+    <Compile Include="Validation\CLS\UnidadeLaboratorioValidation.cs" />
+    <Compile Include="Validation\CLS\UnidadeMedidaValidation.cs" />
+    <Compile Include="Validation\CLS\UsoProdutoValidation.cs" />
+    <Compile Include="Validation\Identity\ClaimsValidation.cs" />
+    <Compile Include="Validation\Identity\RolesValidation.cs" />
+    <Compile Include="Validation\Identity\UserLoginValidation.cs" />
+    <Compile Include="Validation\Identity\UserRolesValidation.cs" />
+    <Compile Include="Validation\Identity\UsuarioValidation.cs" />
+    <Compile Include="Validation\Messages\ClaimsReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClaimsReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Identity\UserClaimsValidation.cs" />
+    <Compile Include="Validation\Identity\UsuarioAtivoValidation.cs" />
+    <Compile Include="Validation\Messages\ImagemSateliteRecorteMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImagemSateliteRecorteMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\RolesReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RolesReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\SaveTemporaryImgByteValidate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaveTemporaryImgByteValidate.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\UserClaimsReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserClaimsReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\UserLoginReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserLoginReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\UserRolesReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserRolesReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\UsoProdutoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsoProdutoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\TeorSoloReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeorSoloReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ProdutoSimuladoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProdutoSimuladoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\CLS\ProdutoValidation.cs" />
+    <Compile Include="Validation\CLS\VariedadeCulturaValidation.cs" />
+    <Compile Include="Validation\Messages\AduboReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AduboReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\AmostraFoliarReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmostraFoliarReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\AmostraReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmostraReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\AnaliseSoloReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AnaliseSoloReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\AreaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AreaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\CicloProducaoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CicloProducaoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\CorretivoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CorretivoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\CulturaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CulturaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\EmpresaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpresaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\EstagioCulturaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EstagioCulturaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ExtracaoCulturaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExtracaoCulturaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\FaixaTeorReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FaixaTeorReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\FertilizanteReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FertilizanteReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\FormulacaoAduboReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormulacaoAduboReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\FornecedorReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FornecedorReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\GridReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GridReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ImagemReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImagemReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ImagemSateliteReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImagemSateliteReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\LaboratorioReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaboratorioReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\NivelSoloReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NivelSoloReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ParametroAreaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParametroAreaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ParametroPropriedadeReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParametroPropriedadeReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ParametroRecomendacaoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParametroRecomendacaoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\PartePlantaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartePlantaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ProblemaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProblemaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ProdutividadeVariedadeReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProdutividadeVariedadeReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ProdutoReqValidation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProdutoReqValidation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\PropriedadeReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropriedadeReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ProprietarioFornecedorReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProprietarioFornecedorReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ProprietarioReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProprietarioReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\RecomendacaoFoliarReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecomendacaoFoliarReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\RegiaoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegiaoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\RestevaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestevaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\SafraReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SafraReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\SequenciaImportacaoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SequenciaImportacaoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\ServicoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\SimulacaoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SimulacaoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\TeorFoliarReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeorFoliarReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\TipoAmostraReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoAmostraReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\TipoSoloReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoSoloReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\UnidadeLaboratorioReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnidadeLaboratorioReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\UnidadeMedidaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnidadeMedidaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\UsuarioAtivoReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsuarioAtivoReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\UsuarioReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsuarioReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Messages\VariedadeCulturaReqMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VariedadeCulturaReqMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTables\AnaliseSoloView.cs" />
+    <Compile Include="ViewTables\AreaServicoView.cs" />
+    <Compile Include="ViewTables\AreaView.cs" />
+    <Compile Include="ViewTables\ArquivoAreaView.cs" />
+    <Compile Include="ViewTables\BNG_Tables\BNG_Shape.cs" />
+    <Compile Include="ViewTables\CicloProducaoView.cs" />
+    <Compile Include="ViewTables\CorretivoView.cs" />
+    <Compile Include="ViewTables\CulturaView.cs" />
+    <Compile Include="ViewTables\FaixaTeorView.cs" />
+    <Compile Include="ViewTables\FertilizanteView.cs" />
+    <Compile Include="ViewTables\Fields.cs" />
+    <Compile Include="ViewTables\GeoView.cs" />
+    <Compile Include="ViewTables\GridEditView.cs" />
+    <Compile Include="ViewTables\GridView.cs" />
+    <Compile Include="ViewTables\ImagemSateliteView.cs" />
+    <Compile Include="ViewTables\ImportItensLabView.cs" />
+    <Compile Include="ViewTables\OpenGeo.cs" />
+    <Compile Include="ViewTables\ParametroSoloView.cs" />
+    <Compile Include="ViewTables\ParametroView.cs" />
+    <Compile Include="ViewTables\ProdutoSimuladorView.cs" />
+    <Compile Include="ViewTables\ProdutoView.cs" />
+    <Compile Include="ViewTables\PropriedadeView.cs" />
+    <Compile Include="ViewTables\ProprietarioView.cs" />
+    <Compile Include="ViewTables\PyAPI.cs" />
+    <Compile Include="ViewTables\RecomendacaoFoliarView.cs" />
+    <Compile Include="ViewTables\SafraView.cs" />
+    <Compile Include="ViewTables\ShapeFile.cs" />
+    <Compile Include="ViewTables\UnidadeDeLaboratorioView.cs" />
+    <Compile Include="ViewTables\UserActivateView.cs" />
+    <Compile Include="ViewTables\UserView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Validation\Messages\ClaimsReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ClaimsReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ImagemSateliteRecorteMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImagemSateliteRecorteMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\RolesReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RolesReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\SaveTemporaryImgByteValidate.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SaveTemporaryImgByteValidate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\UserClaimsReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserClaimsReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\UserLoginReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserLoginReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\UserRolesReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserRolesReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\UsoProdutoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UsoProdutoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\TeorSoloReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TeorSoloReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ProdutoSimuladoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProdutoSimuladoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\AduboReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AduboReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\AmostraFoliarReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AmostraFoliarReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\AmostraReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AmostraReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\AnaliseSoloReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AnaliseSoloReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\AreaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AreaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\CicloProducaoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CicloProducaoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\CorretivoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CorretivoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\CulturaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CulturaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\EmpresaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmpresaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\EstagioCulturaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EstagioCulturaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ExtracaoCulturaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExtracaoCulturaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\FaixaTeorReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FaixaTeorReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\FertilizanteReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FertilizanteReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\FormulacaoAduboReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormulacaoAduboReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\FornecedorReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FornecedorReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\GridReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GridReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ImagemReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImagemReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ImagemSateliteReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImagemSateliteReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\LaboratorioReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LaboratorioReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\NivelSoloReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NivelSoloReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ParametroAreaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ParametroAreaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ParametroPropriedadeReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ParametroPropriedadeReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ParametroRecomendacaoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ParametroRecomendacaoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\PartePlantaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PartePlantaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ProblemaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProblemaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ProdutividadeVariedadeReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProdutividadeVariedadeReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ProdutoReqValidation.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProdutoReqValidation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\PropriedadeReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropriedadeReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ProprietarioFornecedorReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProprietarioFornecedorReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ProprietarioReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProprietarioReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\RecomendacaoFoliarReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RecomendacaoFoliarReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\RegiaoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegiaoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\RestevaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RestevaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\SafraReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SafraReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\SequenciaImportacaoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SequenciaImportacaoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\ServicoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServicoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\SimulacaoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SimulacaoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\TeorFoliarReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TeorFoliarReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\TipoAmostraReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TipoAmostraReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\TipoSoloReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TipoSoloReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\UnidadeLaboratorioReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UnidadeLaboratorioReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\UnidadeMedidaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UnidadeMedidaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\UsuarioAtivoReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UsuarioAtivoReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\UsuarioReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UsuarioReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation\Messages\VariedadeCulturaReqMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VariedadeCulturaReqMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\json-serialize.js" />
+    <Content Include="Scripts\json-serialize.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConectionPath\ConectionPath.csproj">
+      <Project>{0bc4ccba-28ac-4a40-b4f0-d3aa17ae2836}</Project>
+      <Name>ConectionPath</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetTopologySuite.IO.ShapeFile\NetTopologySuite.IO.ShapeFile.csproj">
+      <Project>{b154d1f4-9153-4938-8070-c5a4242d55f8}</Project>
+      <Name>NetTopologySuite.IO.ShapeFile</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

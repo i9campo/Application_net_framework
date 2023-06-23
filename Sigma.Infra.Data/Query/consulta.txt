@@ -1,0 +1,299 @@
+﻿USE [SIGMA]
+GO
+/****** Object:  UserDefinedFunction [dbo].[fbngGetMediaCorretivo]    Script Date: 31/01/2022 16:39:45 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+/****** @tipo: 0. Retorna analises por área, 1. Retorna analises por zona. *****/
+/****** @perfil: 0. Retorna corretivo que não contém perfil, 1. Retorna corretivo que contém perfil. ****/
+
+ALTER   FUNCTION [dbo].[fbngGetMediaCorretivo] (@IDAreaServico CHAR(36), @IDGrid CHAR(36) NULL, @profundidade NVARCHAR(MAX),  @tipo INT, @opcao INT, @perfil INT)
+RETURNS @Result TABLE
+(
+	[V]    [FLOAT] NULL, -- Essa variável é referente a visualização da média ("NIVEIS BASE"). VALUE : V%
+	[Ca]   [FLOAT] NULL, -- Essa variável é referente a visualização da média ("NIVEIS BASE"). VALUE : Ca(cmol/dm³)
+	[Mg]   [FLOAT] NULL, -- Essa variável é referente a visualização da média ("NIVEIS BASE"). VALUE : Mg(cmol/dm³)
+	[K]	   [FLOAT] NULL, -- Essa variável é referente a visualização da média ("NIVEIS BASE"). VALUE : k(cmol/dm³)
+
+	[CaMg] [FLOAT] NULL, -- Essa variável é referente a visualização da média ("Relações"). VALUE : Ca/Mg
+	[CaK]  [FLOAT] NULL, -- Essa variável é referente a visualização da média ("Relações"). VALUE : Ca/K
+	[MgK]  [FLOAT] NULL, -- Essa variável é referente a visualização da média ("Relações"). VALUE : Mg/K
+	[CaMgK][FLOAT] NULL, -- Essa variável é referente a visualização da média ("Relações"). VALUE : (Ca+Mg)/K
+
+	[CTCCA][FLOAT] NULL, -- Essa variável é referente a visualização da média ("CTC(%) 0.00 cmol/dm³"). VALUE : Ca
+	[CTCMG][FLOAT] NULL, -- Essa variável é referente a visualização da média ("CTC(%) 0.00 cmol/dm³"). VALUE : Mg
+	[CTCK] [FLOAT] NULL, -- Essa variável é referente a visualização da média ("CTC(%) 0.00 cmol/dm³"). VALUE : K
+
+	[S]    [FLOAT] NULL, -- Essa variável é aleatória, não contém na visualização. (Mas pode ser utilizada futuramente). 
+
+	[somatorioP2O5] [FLOAT] NULL, --
+	[somatorioK2O]  [FLOAT] NULL,  -- 
+
+	[sCaO]			[FLOAT] NULL, 
+	[sMgO]			[FLOAT] NULL,
+	[sP2O5]			[FLOAT] NULL, 
+	[sK2O]			[FLOAT] NULL, 
+	[sS]			[FLOAT] NULL
+)
+AS
+
+BEGIN 
+	DECLARE @Analises AS TABLE(
+		[agua]		[float] NULL,
+		[mo]		[float] NULL, 
+		[momicro]	[float] NULL, 
+		[co]		[float] NULL, 
+		[pmehl]		[float] NULL, 
+		[pres]		[float] NULL, 
+		[k]			[float]	NULL, 
+		[s]			[float]	NULL, 
+		[ca]		[float]	NULL, 
+		[mg]		[float]	NULL, 
+		[al]		[float]	NULL, 
+		[hal]		[float]	NULL, 
+		[ctc]		[float]	NULL, 
+		[b]			[float]	NULL, 
+		[zn]		[float]	NULL, 
+		[fe]		[float]	NULL, 
+		[mn]		[float]	NULL, 
+		[cu]		[float]	NULL, 
+		[v]			[float]	NULL, 
+		[relcamg]	[float]	NULL, 
+		[relcak]	[float]	NULL, 
+		[relmgk]    [float] NULL, 
+		[ctcca]		[float] NULL, 
+		[ctcmg]     [float]	NULL,  
+		[ctck]	    [float]	NULL, 
+		[ctcal]		[float]	NULL
+	) 
+	
+	BEGIN 
+	--- Essa condição será utilizada para carregar a média das a analises por área. 
+		--- Caso contrario a média será feita por área. 'GRID'
+	IF (@IDGrid = NULL)
+		BEGIN 
+			INSERT INTO @Analises( agua,  mo, momicro, co, pmehl, pres, k, s, ca, mg, al, hal, ctc, b, zn, fe, mn, cu,  v, relcamg, relcak, relmgk, ctcca, ctcmg, ctck, ctcal)
+			SELECT  agua,  mo, momicro, co, pmehl, pres, k, s, ca, mg, al, hal, ctc, b, zn, fe, mn, cu,  v, relCaMg, relCaK, relMgK, CTCCa, CTCMg, CTCK, CTCAl  FROM fbngGetMediaAnaliseSolo(@IDAreaServico,NULL, @profundidade,@tipo,0,0) 
+		END
+	ELSE
+		BEGIN
+			INSERT INTO @Analises( agua,  mo, momicro, co, pmehl, pres, k, s, ca, mg, al, hal, ctc, b, zn, fe, mn, cu,  v, relcamg, relcak, relmgk, ctcca, ctcmg, ctck, ctcal)
+			SELECT  agua,  mo, momicro, co, pmehl, pres, k, s, ca, mg, al, hal, ctc, b, zn, fe, mn, cu,  v, relCaMg, relCaK, relMgK, CTCCa, CTCMg, CTCK, CTCAl  FROM fbngGetMediaAnaliseSolo(@IDAreaServico,@IDGrid, @profundidade,@tipo,0,0) 
+		END
+	END
+
+
+	
+	DECLARE @mediaK2OAnalise	AS FLOAT = 0.0
+	DECLARE @mediaCaAnalise 	AS FLOAT = 0.0
+	DECLARE @mediaMgAnalise 	AS FLOAT = 0.0
+	DECLARE @CTC 				AS FLOAT = 0.0
+	DECLARE @v 					AS FLOAT = 0.0
+	
+	DECLARE @mediaCaCorretivo 	AS FLOAT = 0.0
+	DECLARE @mediaMgCorretivo 	AS FLOAT = 0.0
+	DECLARE @mediaK2OCorretivo 	AS FLOAT = 0.0
+	DECLARE @mediaSanalise		AS FLOAT = 0.0
+
+	DECLARE @sCaO  AS FLOAT = 0.0
+	DECLARE @sMgO  AS FLOAT = 0.0
+	DECLARE @sP2O5 AS FLOAT = 0.0
+	DECLARE @sK2O  AS FLOAT = 0.0
+	DECLARE @sS    AS FLOAT = 0.0
+
+	--- Este bloco calcula a média do corretivo. 
+	IF (@IDGrid IS NULL)
+		BEGIN
+			SELECT 
+				@sCaO =  (
+					CASE
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumCAO(qtde,prnt,perCaO,eficiencia,descricao),2))) ELSE 0.0 END)  ,
+				@sMgO =  (  
+					CASE
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumMgO(qtde,prnt,perMgO,eficiencia,descricao),2))) ELSE 0.0 END)  ,
+				@sP2O5 = (  
+					CASE 
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumP2O5(qtde, perP2O5, eficiencia),2)) ) ELSE 0.0			  END)  ,
+				@sK2O = (
+					CASE 
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumK2O(qtde, perK2O, eficiencia), 2)) )  ELSE 0.0			  END) ,
+				@sS  =  ( 
+					CASE 
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumS(qtde, perS, eficiencia), 2)))	      ELSE 0.0		      END)
+			FROM Corretivo WHERE IDAreaServico = @IDAreaServico AND opcao =  @opcao AND perfil = @perfil AND marcado = 1
+				
+			GROUP BY marcado
+		END
+	ELSE 
+		BEGIN 
+			SELECT 
+				@sCaO =  (
+					CASE
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumCAO(qtde,prnt,perCaO,eficiencia,descricao),2))) ELSE 0.0 END)  ,
+				@sMgO =  (  
+					CASE
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumMgO(qtde,prnt,perMgO,eficiencia,descricao),2))) ELSE 0.0 END)  ,
+				@sP2O5 = (  
+					CASE 
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumP2O5(qtde, perP2O5, eficiencia),2)) ) ELSE 0.0			  END)  ,
+				@sK2O = (
+					CASE 
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumK2O(qtde, perK2O, eficiencia), 2)) )  ELSE 0.0			  END) ,
+				@sS  =  ( 
+					CASE 
+						WHEN (marcado = 1) THEN ( SUM( ROUND(dbo.CalculateSumS(qtde, perS, eficiencia), 2)))	      ELSE 0.0		      END)
+			FROM Corretivo WHERE IDAreaServico = @IDAreaServico AND IDGrid = @IDGrid AND opcao =  @opcao AND perfil = @perfil AND marcado = 1
+			GROUP BY marcado
+		END 
+
+
+	--- Essa primeira consulta será utilizada para capturar os valores da média da analise solo, para variáves descrita acima. 
+	SELECT @mediaK2OAnalise = k, @mediaCaAnalise = ca, @mediaMgAnalise = mg, @CTC = ctc, @v = ctc, @mediaSanalise = s  FROM @Analises
+	
+	SET @mediaCaCorretivo  = ( 
+		CASE
+			WHEN (@sCaO = 0) THEN 0.0 ELSE ROUND((@sCaO / 400.78), 2) END
+		)
+		
+	SET @mediaMgCorretivo  = ( 
+		CASE 
+			WHEN (@sMgO = 0) THEN 0.0 ELSE ROUND((@sMgO / 243.06), 2) END
+		)
+	
+	SET @mediaK2OCorretivo = ( 
+		CASE 
+			WHEN (@sK2O = 0) THEN 0.0 ELSE ROUND((@sK2O / 2 ),2 ) END 
+		)
+
+	DECLARE @Ca     AS FLOAT = 0.0
+	DECLARE @Mg     AS FLOAT = 0.0
+	DECLARE @K2O    AS FLOAT = 0.0
+	DECLARE @K      AS FLOAT = 0.0
+	DECLARE @vFinal AS FLOAT = 0.0
+
+	--- Este bloco será utilizado para calcular os niveis base. 
+	BEGIN 
+		SET @Ca		= ROUND((@mediaCaAnalise + @mediaCaCorretivo),2)
+		SET @Mg		= ROUND((@mediaMgAnalise + @mediaMgCorretivo),2)
+		SET @K2O	= ROUND((@mediaK2OAnalise + @mediaK2OCorretivo),2)
+		SET @K	    = dbo.CalculateK(@K2O, @mediaK2OAnalise, @Ca, @Mg, 0, 0 , 1)
+
+		IF(@v > 0) 
+			BEGIN 
+				SET @vFinal =  ( 
+					CASE 
+						WHEN (@CTC = 0 ) THEN 0.0 ELSE ROUND((((@Ca + @Mg + @K) / @CTC) * 100),2) END 
+					)
+			END 
+	END 
+
+	DECLARE @participacaoCa AS FLOAT = 0.0
+	DECLARE @participacaoMg AS FLOAT = 0.0
+	DECLARE @participacaoK  AS FLOAT = 0.0
+
+	--- Este bloco será utilizado para fazer o calcular os novos niveis de base. (Novo Niveis Base.)
+	BEGIN 
+		IF (@Ca > 0 AND @CTC > 0)
+			BEGIN 
+				SET @participacaoCa =  ROUND((@Ca / @CTC) * 100 , 2)
+				
+			END 
+		ELSE 
+			BEGIN 
+				SET @participacaoCa = 0.0; 
+			END
+
+		IF (@Mg > 0 AND @CTC > 0) 
+			BEGIN
+				SET @participacaoMg = ROUND((@Mg / @CTC) * 100 , 2)
+				
+			END
+		ELSE
+			BEGIN 
+				SET @participacaoMg = 0.0
+			END
+
+
+		IF (@K > 0  AND @CTC > 0) 
+			BEGIN 
+				SET @participacaoK  = ROUND((@K  / @CTC) * 100 , 2)
+				
+			END 
+		ELSE
+			BEGIN 
+				SET @participacaoK  = 0
+			END 
+	END 
+
+	DECLARE @s   AS FLOAT = 0.0
+	DECLARE @div AS INT = 10;
+
+	--- Este bloco será utilizado para fazer o calculo de 'S' (Somatorio de S).
+	BEGIN 
+		SET @s = ROUND((0 / @div) + (@mediaSanalise),2)
+	END 
+
+	DECLARE @somatorioP2O5 AS FLOAT = 0.0
+	DECLARE @somatorioK2O  AS FLOAT = 0.0
+
+	IF (@IDGrid IS NULL)
+		BEGIN
+			SET @somatorioK2O = 0.0
+			SET @somatorioP2O5 = 0.0
+		END
+	ELSE
+		BEGIN
+			SELECT 
+				@somatorioP2O5 = (
+				CASE 
+					WHEN (marcado = 1) THEN SUM(ROUND( ( (perP2O5 / 100) * (qtde) ),2) ) ELSE 0.0 END),
+				@somatorioK2O = (
+				CASE 
+					WHEN (marcado = 1) THEN SUM( ROUND( (perK2O / 100) * (qtde), 2) )    ELSE 0.0 END )
+			FROM Corretivo WHERE IDAreaServico = @IDAreaServico AND IDGrid =  @IDGrid AND opcao = @opcao AND perfil = @perfil AND marcado = 1
+			GROUP BY marcado
+		END
+
+	DECLARE @relacaoCaMg		AS FLOAT = 0.0 
+	DECLARE @relacaoCaK			AS FLOAT = 0.0
+	DECLARE @relacaoMgK			AS FLOAT = 0.0 
+	DECLARE @relacaoCaMgK		AS FLOAT = 0.0
+
+	SET @relacaoCaMg  = ROUND(dbo.CalculateRelCaMg(@Ca, @Mg), 2)
+	SET @relacaoCaK   = ROUND(dbo.CalculateRelCaK(@Ca,  @K2O), 2)
+	SET @relacaoMgK   = ROUND(dbo.CalculateRelMgK(@Mg,  @K2O), 2)
+	SET @relacaoCaMgK = ROUND(dbo.CalculateRelCaMgK(@Ca,@Mg, @K2O) ,2)
+
+	--- Aqui será inserido o resultado dos calculos acima, para retorno. 
+	INSERT @Result (V, Ca, Mg, K, CaMg, CaK, MgK, CaMgK, CTCCA, CTCMG, CTCK, S, somatorioK2O, somatorioP2O5, sCaO, sMgO, sP2O5, sK2O, sS)
+	SELECT 
+		@vFinal, 
+		@Ca, 
+		@Mg, 
+		@K2O, 
+		@relacaoCaMg, 
+		@relacaoCaK, 
+		@relacaoMgK, 
+		@relacaoCaMgK, 
+		@participacaoCa, 
+		@participacaoMg, 
+		@participacaoK, 
+		@s, 
+		@somatorioK2O, 
+		@somatorioP2O5,
+		@sCaO, 
+		@sMgO, 
+		@sP2O5,
+		@sK2O, 
+		@sS
+		
+
+
+RETURN
+
+
+
+END

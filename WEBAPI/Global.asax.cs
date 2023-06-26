@@ -38,7 +38,7 @@ namespace WEBAPI
             var context = HttpContext.Current;
             var response = context.Response;
 
-            response.AddHeader("Access-Control-Allow-Origin", "*");
+            response.AddHeader("Access-Control-Allow-Origin", "http://localhost:3000");
             response.AddHeader("X-Frame-Options", "ALLOW-FROM *");
 
             if (context.Request.HttpMethod == "OPTIONS")

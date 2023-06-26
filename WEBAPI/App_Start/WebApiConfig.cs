@@ -1,5 +1,4 @@
-﻿using System.Web.Configuration;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Cors;
 using FluentValidation.WebApi;
 using Microsoft.Owin.Security.OAuth;
